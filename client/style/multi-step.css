@@ -1,0 +1,39 @@
+
+.multiStep {
+    background-color: #eee;
+}
+/*.multiStep .question {*/
+    /*font-size: 16px;*/
+    /*padding-top: 20px;*/
+    /*padding-bottom: 40px;*/
+/*}*/
+
+.btn-icon {
+    font-size: 18px;
+    float: left;
+    clear: left;
+    padding-left: 12px;
+    line-height: 36px;
+    vertical-align: middle;
+    height: 100%;
+}
+.multi-step {
+    position: relative;
+}
+.multi-step > i.zmdi {
+
+    margin-right: 10px;
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
+    text-align: center;
+}
+.multi-step .container,
+.multi-step-filler {
+    min-height: 75px;
+
+}
+.multi-step .step {
+    margin-left: 55px;
+    /*margin-left: 49px;*/
+}

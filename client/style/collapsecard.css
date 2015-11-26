@@ -1,0 +1,119 @@
+@charset "UTF-8";
+/*!
+  Paper Collapse v0.4.0
+
+  Collapsible paper cards.
+
+  Made with love by bbo - ©2015 Alexander Rühle
+  MIT License http://opensource.org/licenses/MIT
+*/
+.collapse-card {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    color: #777;
+    -webkit-transition: 0.4s;
+    -moz-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+    /*margin-bottom: 3px;*/
+
+}
+.collapse-card * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+}
+.collapse-card.active {
+    /*-moz-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.18824);
+    -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.18824);
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.18824);*/
+    -moz-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16), 0 3px 10px rgba(0, 0, 0, 0.23);
+    -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16), 0 3px 10px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.16), 0 3px 10px rgba(0, 0, 0, 0.23);
+    z-index: 200;
+    /*margin: 1rem -1rem;*/
+    margin: 1rem 0rem;
+    /*margin: 0.5rem -0.5rem;*/
+}
+.collapse-card.active .collapse-card__heading:hover::after {
+    /*content: "\f066";*/
+    content: "\f311";
+}
+.collapse-card .collapse-card__heading:hover::after {
+    /*content: "\f065";*/
+    content: "\f312";
+}
+
+.collapse-card__heading {
+    cursor: pointer;
+    padding: 1rem;
+    position: relative;
+    padding-left: 70px;
+}
+.collapse-card__heading:before, .collapse-card__heading:after {
+    content: " ";
+    display: table;
+}
+.collapse-card__heading:after {
+    clear: both;
+}
+/*.collapse-card__heading i {*/
+    /*float: left;*/
+/*}*/
+.collapse-card__heading::after {
+    color: #404040;
+    font-family: 'material-design-iconic-font';
+    font-size: 1rem;
+    line-height: 2rem;
+    padding-left: .4rem;
+    position: absolute;
+    right: 1rem;
+    top: 0.45rem;
+}
+.collapse-card__avatar {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+}
+
+.collapse-card__title {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin: 0 2rem 0 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+.collapse-card__subtitle {
+    font-size: 0.85rem;
+    line-height: 0.85rem;
+    margin: 0 2rem 0 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #bbb;
+}
+
+.collapse-card__body {
+    /*padding: 1rem;*/
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
+    display: none;
+}
+.collapse-card__sectiontitle {
+    text-align: left;
+    font-size: 0.95rem;
+    line-height: 0.95rem;
+    margin: 0 2rem 0 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #bbb;
+}
+
+
+
+
