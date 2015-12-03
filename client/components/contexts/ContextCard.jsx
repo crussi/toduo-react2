@@ -8,7 +8,8 @@ const {
 
 ContextCard = React.createClass({
     trianglify() {
-        let img = this.refs.something.getDOMNode();
+        //let img = this.refs.something.getDOMNode();
+        let img = this.refs.something;
         let pattern = Trianglify({
             width: img.offsetWidth,
             height: img.offsetHeight,

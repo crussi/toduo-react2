@@ -19,6 +19,7 @@ MultiStep = React.createClass({
         this.props.handleRemove();
     },
     render(){
+        console.log('MultiStep render');
         const {nextkey} = this.state;
         let key = nextkey[nextkey.length-1];
         let nextstep = this.props.nextstep[key].nextstep;
@@ -41,10 +42,9 @@ MultiStep = React.createClass({
         //console.dir(compProps);
         //let comp = React.cloneElement(nextstep.component, { callback: this.handleClick, stepProps: stepProps });
         let comp = React.cloneElement(nextstep.component, compProps);
-
         return <div className="multi-step">
-                {comp}
-                <PrevButton {...prevProps}/>
-        </div>
+                    {comp}
+                    <PrevButton {...prevProps}/>
+               </div>
     }
 });

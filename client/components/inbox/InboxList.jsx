@@ -2,7 +2,8 @@ const {
     List,
     ListItem,
     ListDivider,
-    Avatar
+    Avatar,
+    Styles
 
     } = MUI;
 

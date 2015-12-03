@@ -1,3 +1,5 @@
+const { FlatButton, Styles } = MUI;
+
 const styles = {
     btnPrev: {
         position: 'absolute',
@@ -9,6 +11,14 @@ const styles = {
 };
 
 PrevButton = React.createClass({
+    childContextTypes: {
+        muiTheme: React.PropTypes.object
+    },
+    getChildContext(){
+        return {
+            muiTheme: Styles.ThemeManager.getMuiTheme(Styles.LightRawTheme)
+        }
+    },
     handleClick(val){
         this.props.callback(val);
     },

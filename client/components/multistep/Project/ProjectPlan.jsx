@@ -1,5 +1,5 @@
 const {
-    FlatButton
+    FlatButton, Styles
     } = MUI;
 
 const styles = {

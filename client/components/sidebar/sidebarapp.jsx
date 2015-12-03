@@ -1,14 +1,6 @@
 
 const {
-    RaisedButton,
-    FontIcon,
-    Avatar,
-    AppBar,
-    LeftNav,
-    MenuItem,
-    IconButton,
     Styles
-
     } = MUI;
 
 //const Colors = mui.Styles.Colors;
@@ -21,14 +13,6 @@ const styles = {
         padding: 8,
     },
 };
-
-const suggestions = [
-    'mac pro',
-    'mac mini',
-    'macbook',
-    'macbook air',
-    'macbook pro'
-];
 
 SidebarApp = React.createClass({
     mixins: [ReactMeteorData],
@@ -62,14 +46,14 @@ SidebarApp = React.createClass({
         let viewportHeight = window.innerHeight - 54;
         this.setState({viewportHeight: viewportHeight + 'px'});
     },
-    componentDidMount: function () {
-        window.addEventListener('resize', this.handleResize);
-        this.handleResize();
-
-    },
-    componentWillUnmount: function() {
-        window.removeEventListener('resize', this.handleResize);
-    },
+    //componentDidMount: function () {
+    //    window.addEventListener('resize', this.handleResize);
+    //    this.handleResize();
+    //
+    //},
+    //componentWillUnmount: function() {
+    //    window.removeEventListener('resize', this.handleResize);
+    //},
     toggleOpen(ev) {
         this.setState({open: !this.state.open});
 
@@ -84,10 +68,12 @@ SidebarApp = React.createClass({
         let mql = window.matchMedia(`(min-width: 800px)`);
         mql.addListener(this.mediaQueryChanged);
         this.setState({mql: mql, docked: mql.matches});
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize();
     },
-
     componentWillUnmount() {
         this.state.mql.removeListener(this.mediaQueryChanged);
+        window.removeEventListener('resize', this.handleResize);
     },
 
     mediaQueryChanged() {
@@ -147,6 +133,7 @@ SidebarApp = React.createClass({
         });
     },
     render() {
+
         //console.log('sidebarapp render');
         let sidebar = <SidebarContent routestate={this.props.routestate} />;
 

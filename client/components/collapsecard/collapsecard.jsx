@@ -1,5 +1,6 @@
-//const Colors = mui.Styles.Colors;
-//const ThemeManager = new mui.Styles.ThemeManager();
+const {
+    Styles
+    } = MUI;
 
 CollapseCard = React.createClass({
     getInitialState(){

@@ -20,7 +20,7 @@ CollapseCardBody = React.createClass({
         let stepChanged = nextProps.stepName !== this.props.stepName;
         if (dirChanged || stepChanged) {
             this.setState({ slideDirection: nextProps.slideDirection });
-            let $el = $(this.getDOMNode());
+            let $el = $(ReactDOM.findDOMNode(this));
             switch (nextProps.slideDirection.trim()) {
                 case 'up':
                     $el.slideUp('animationDuration: 400');

@@ -1,13 +1,6 @@
 const {
     RaisedButton,
-    FontIcon,
-    Avatar,
-    AppBar,
-    LeftNav,
-    MenuItem,
-    IconButton
-
-
+    Styles
     } = MUI;
 
 //const Colors = mui.Styles.Colors;

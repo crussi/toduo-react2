@@ -7,7 +7,7 @@ IsProject = React.createClass({
         this.props.handleNextStep('IsProject.' + val );
     },
     render(){
-        //console.log('IsProject render');
+        console.log('IsProject render');
 
         let childProps = {
             question: "Is this a project?",
@@ -16,7 +16,7 @@ IsProject = React.createClass({
         //console.dir(childProps);
         let iconClass = "zmdi zmdi-" + this.props.icon;
         return <div>
-            <ReactCSSTransitionGroup transitionName="example" transitionAppear={true} transitionAppearTimeout={250} transitionEnterTimeout={250} transitionEnterTimeout={250}>
+            <ReactCSSTransitionGroup transitionName="example" transitionAppear={true} transitionAppearTimeout={250} transitionEnterTimeout={250} transitionLeaveTimeout={250}>
                 <MultiStepYesNo {...childProps}/>
             </ReactCSSTransitionGroup>
         </div>

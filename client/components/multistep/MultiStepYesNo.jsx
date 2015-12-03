@@ -1,4 +1,4 @@
-const { FlatButton } = MUI;
+const { FlatButton, Styles } = MUI;
 
 const styles = {
     question: {

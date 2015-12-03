@@ -6,59 +6,59 @@ const StartStep = {
 }
 
 const ActionableStep = {
-    "component" :  Actionable,
+    "component" :  <Actionable/>,
     "icon" : "run"
 }
 const IsProjectStep = {
-    "component" : IsProject,
+    "component" : <IsProject/>,
     "icon" : "assignment"
 }
 const NonActionableStep = {
-    "component" : NonActionableForm,
+    "component" : <NonActionableForm/>,
     "icon" : "traffic"
 }
 const ApproveChangeStep = {
-    "component" : ApproveChange,
+    "component" : <ApproveChange/>,
     "icon" : "thumb-up"
 }
 const InboxTransitionStep = {
-    "component" : InboxTransition,
+    "component" : <InboxTransition/>,
     "icon" : "thumb-up"
 }
 const ProjectPlanStep = {
-    "component" : ProjectPlan,
+    "component" : <ProjectPlan/>,
     "icon" : "assignment-o"
 }
 const NextActionStep = {
-    "component" : NextAction,
+    "component" : <NextAction/>,
     "icon" : "playlist-plus"
 }
 const IsDoableNowStep = {
-    "component" : IsDoableNow,
+    "component" : <IsDoableNow/>,
     "icon" : "timer"
 }
 const DoItNowStep = {
-    "component" : DoItNow,
+    "component" : <DoItNow/>,
     "icon" : "check-square"
 }
 const IsDelegatableStep = {
-    "component" : IsDelegatable,
+    "component" : <IsDelegatable/>,
     "icon" : "account-add"
 }
 const DelegateStep = {
-    "component" : Delegate,
+    "component" : <Delegate/>,
     "icon" : "account-box"
 }
 const IsSchedulableStep = {
-    "component" : IsSchedulable,
+    "component" : <IsSchedulable/>,
     "icon" : "time"
 }
 const ScheduleStep = {
-    "component" : Schedule,
+    "component" : <Schedule/>,
     "icon" : "calendar"
 }
 const RefineActionStep = {
-    "component" : RefineAction,
+    "component" : <RefineAction/>,
     "icon" : "rotate-right"
 }
 

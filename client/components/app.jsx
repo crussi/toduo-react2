@@ -1,5 +1,6 @@
 const {
-  RaisedButton
+  RaisedButton,
+  Styles
 } = MUI;
 
 //const ThemeManager = new mui.Styles.ThemeManager();
