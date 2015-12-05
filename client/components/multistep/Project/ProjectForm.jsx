@@ -5,8 +5,12 @@ const {
     TextField,DatePicker,FlatButton,
     Styles
     } = MUI;
+
+var LinkedStateMixin = React.addons.LinkedStateMixin;
+var update = React.addons.update;
+
 ProjectForm = React.createClass({
-    mixins: [ReactMeteorData],
+    mixins: [ReactMeteorData,LinkedStateMixin],
     getMeteorData() {
         return {
             //someVar: Session.get('someVar')
@@ -24,25 +28,12 @@ ProjectForm = React.createClass({
 
     getInitialState: function () {
         return {
-            canSumbit: false,
-            textWidth: '256px'
+            canSubmit: false,
+            textWidth: '256px',
+            tasks:new Array(5),
+            project: new Project()
         };
     },
-
-    errorMessages: {
-        wordsError: "Please only use letters",
-        numericError: "Please provide a number"
-
-    },
-
-    //selectFieldItems: [
-    //    { payload: 'never', text: 'Never' },
-    //    { payload: 'nightly', text: 'Every Night' },
-    //    { payload: 'weeknights', text: 'Weeknights' },
-    //    { payload: 'weekends', text: 'Weekends' },
-    //    { payload: 'weekly', text: 'Weekly' }
-    //],
-
     styles: {
         container: {
             width: '100%',
@@ -64,25 +55,72 @@ ProjectForm = React.createClass({
             color: '#bbb'
         }
     },
-
-    enableButton: function () {
-        this.setState({
-            canSubmit: true
-        });
+    onChange: function(e,date) {
+        //console.dir(e);
+        let updateTask = function(index,value) {
+            let tasks = this.state.tasks.slice();
+            tasks.splice(index, 1, {"Task":value, "IsComplete":false});
+            this.setState({tasks: tasks});
+            project = update(this.state.project, {
+                Tasks: {$set: tasks}
+            });
+            return project;
+        }
+        console.log(e.target.name + ' = ' + e.target.value);
+        let project, tasks;
+        let targetName = e ? e.target.name : 'DateDue'
+        switch (targetName ){
+            case 'Title':
+                project = update(this.state.project, {
+                    Title: {$set: e.target.value}
+                });
+                break;
+            case 'Outcome':
+                project = update(this.state.project, {
+                    Outcome: {$set: e.target.value}
+                });
+                break;
+            case 'DateDue':
+                project = update(this.state.project, {
+                    DateDue: {$set: date}
+                });
+                break;
+            case 'Task1':
+                project = updateTask.call(this,0,e.target.value);
+                break;
+            case 'Task2':
+                project = updateTask.call(this,1,e.target.value);
+                break;
+            case 'Task3':
+                project = updateTask.call(this,2,e.target.value);
+                break;
+            case 'Task4':
+                project = updateTask.call(this,3,e.target.value);
+                break;
+            case 'Task5':
+                project = updateTask.call(this,4,e.target.value);
+                break;
+        }
+        this.setState({project: project, canSubmit: project.validate()});
     },
-
-    disableButton: function () {
-        this.setState({
-            canSubmit: false
-        });
-    },
+    //enableButton: function () {
+    //    this.setState({
+    //        canSubmit: true
+    //    });
+    //},
+    //
+    //disableButton: function () {
+    //    this.setState({
+    //        canSubmit: false
+    //    });
+    //},
     submitForm: function (data) {
-        data.Title = "Michele's planter box";
-        data.Outcome = "Michele will have a place to plant plants.";
-        data.dateDue = "2015-11-01";
-        data.Task1 = "Buy garden soil";
-        data.Task2 = "Mix with soil ammendments";
-        data.Task3 = "Fill to overflowing";
+        //data.Title = "Michele's planter box";
+        //data.Outcome = "Michele will have a place to plant plants.";
+        //data.dateDue = "2015-11-01";
+        //data.Task1 = "Buy garden soil";
+        //data.Task2 = "Mix with soil ammendments";
+        //data.Task3 = "Fill to overflowing";
         //let projectId;
 
         Meteor.call("/projects/addNew", data, (err, res) => {
@@ -110,7 +148,7 @@ ProjectForm = React.createClass({
     adjustTextWidth: function() {
         //let width = this.refs.tasks.getDOMNode().offsetWidth;
         let width = this.refs.tasks.offsetWidth;
-        console.log('width: ' + width);
+        //console.log('width: ' + width);
         this.setState({
             textWidth: (width - 40) + 'px'
         });
@@ -122,14 +160,28 @@ ProjectForm = React.createClass({
     componentWillUnmount: function() {
         window.removeEventListener('resize', this.handleResize);
     },
+    componentWillUpdate(nextProps, nextState) {
+      console.dir(nextState);
+        //let project = update(this.state.project, {
+        //    Title: {$set: nextState.Title},
+        //    Outcome: {$set: nextState.Outcome},
+        //    DateDue: {$set: nextState.DateDue}
+        //});
+        //
+        //this.setState({project: project});
+    },
     render: function () {
         //console.log('ProjectForm render');
-
+        //console.dir(this.state);
+        //console.dir(this.state.tasks);
+        //console.log(this.state.tasks);
+        //console.log(this.state.project.Tasks);
+        //console.dir(this.state.project);
         //Here is how to apply styles to text fields:
         //style={{color:'blue'}} hintStyle={{color:'red'}} underlineStyle={{borderColor:'green'}} underlineFocusStyle={{borderColor:'purple'}}
         //floatingLabelStyle={{color:'yellow'}}
         let styles = this.styles;
-        let { wordsError, numericError, urlError } = this.errorMessages;
+        //let { wordsError, numericError, urlError } = this.errorMessages;
         let textStyle = { color:'orange', width: this.state.textWidth};
         let hintStyle = this.styles.hint;
         let underlineStyle = this.styles.underline;
@@ -164,6 +216,7 @@ ProjectForm = React.createClass({
 
                                             <TextField style={textStyle}
                                                         name='Title'
+                                                        onChange={this.onChange}
                                                 //required
                                                         maxLength={25}
                                                         hintText="What is project's title?"
@@ -172,16 +225,16 @@ ProjectForm = React.createClass({
 
                                             <TextField style={textStyle}
                                                         name='Outcome'
+                                                       onChange={this.onChange}
+
                                                 //required
                                                         maxLength={100}
                                                         hintText="What is the expected outcome?"
                                                         floatingLabelText="Expected outcome" />
-
-                                            <DatePicker textFieldStyle={textStyle}
-                                                        name='DateDue'
-                                                        minDate={minDate} maxDate={maxDate}
-
-                                                        floatingLabelText="Date due" />
+                                            <DatePicker name='DateDue'
+                                                        onChange={this.onChange}
+                                                        hintText="Date due"
+                                                        minDate={minDate} maxDate={maxDate} />
 
                                         </div>
                                     </div>
@@ -189,11 +242,36 @@ ProjectForm = React.createClass({
                                         <div className="collapse-card__sectiontitle ">Identify the first few steps ...</div>
                                         <div className="box-first box-container box-big">
                                             <ul>
-                                                <li><i className="zmdi zmdi-n-1-square"></i><TextField style={textStyle} hintStyle={hintStyle} underlineStyle={underlineStyle} name="Task1" /></li>
-                                                <li><i className="zmdi zmdi-n-2-square"></i><TextField style={textStyle} hintStyle={hintStyle} underlineStyle={underlineStyle} name="Task2"/></li>
-                                                <li><i className="zmdi zmdi-n-3-square"></i><TextField style={textStyle} hintStyle={hintStyle} underlineStyle={underlineStyle} name="Task3"/></li>
-                                                <li><i className="zmdi zmdi-n-4-square"></i><TextField style={textStyle} hintStyle={hintStyle} underlineStyle={underlineStyle} name="Task4"/></li>
-                                                <li><i className="zmdi zmdi-n-5-square"></i><TextField style={textStyle} hintStyle={hintStyle} underlineStyle={underlineStyle} name="Task5"/></li>
+                                                <li><i className="zmdi zmdi-n-1-square"></i>
+                                                    <TextField style={textStyle} hintStyle={hintStyle}
+                                                               underlineStyle={underlineStyle}
+                                                               name="Task1"
+                                                               onChange={this.onChange}/>
+                                                </li>
+                                                <li><i className="zmdi zmdi-n-2-square"></i>
+                                                    <TextField style={textStyle} hintStyle={hintStyle}
+                                                               underlineStyle={underlineStyle}
+                                                               name="Task2"
+                                                               onChange={this.onChange}/>
+                                                </li>
+                                                <li><i className="zmdi zmdi-n-3-square"></i>
+                                                    <TextField style={textStyle} hintStyle={hintStyle}
+                                                               underlineStyle={underlineStyle}
+                                                               name="Task3"
+                                                               onChange={this.onChange}/>
+                                                </li>
+                                                <li><i className="zmdi zmdi-n-4-square"></i>
+                                                    <TextField style={textStyle} hintStyle={hintStyle}
+                                                               underlineStyle={underlineStyle}
+                                                               name="Task4"
+                                                               onChange={this.onChange}/>
+                                                </li>
+                                                <li><i className="zmdi zmdi-n-5-square"></i>
+                                                    <TextField style={textStyle} hintStyle={hintStyle}
+                                                               underlineStyle={underlineStyle}
+                                                               name="Task5"
+                                                               onChange={this.onChange}/>
+                                                </li>
                                             </ul>
                                         </div>
                                     </div>
