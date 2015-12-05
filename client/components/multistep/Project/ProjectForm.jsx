@@ -66,7 +66,6 @@ ProjectForm = React.createClass({
             });
             return project;
         }
-        console.log(e.target.name + ' = ' + e.target.value);
         let project, tasks;
         let targetName = e ? e.target.name : 'DateDue'
         switch (targetName ){
@@ -114,7 +113,8 @@ ProjectForm = React.createClass({
     //        canSubmit: false
     //    });
     //},
-    submitForm: function (data) {
+    submitForm: function () {
+        console.log('submitForm');
         //data.Title = "Michele's planter box";
         //data.Outcome = "Michele will have a place to plant plants.";
         //data.dateDue = "2015-11-01";
@@ -122,8 +122,8 @@ ProjectForm = React.createClass({
         //data.Task2 = "Mix with soil ammendments";
         //data.Task3 = "Fill to overflowing";
         //let projectId;
-
-        Meteor.call("/projects/addNew", data, (err, res) => {
+        //let project = this.state.project;
+        Meteor.call("/projects/addNew", this.state.project, (err, res) => {
             console.log('meteor.call projects addNew');
             if (err) {
                 console.log("Failed to add new project.");
@@ -281,7 +281,7 @@ ProjectForm = React.createClass({
                                                 style={styles.submit}
                                                 type="submit"
                                                 label="Submit"
-
+                                                onClick={this.submitForm}
                                                 disabled={!this.state.canSubmit} />
                                         </div>
                                     </div>
