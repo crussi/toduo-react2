@@ -7,7 +7,7 @@ IsProject = React.createClass({
         this.props.handleNextStep('IsProject.' + val );
     },
     render(){
-        console.log('IsProject render');
+        //console.log('IsProject render');
 
         let childProps = {
             question: "Is this a project?",

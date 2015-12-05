@@ -6,7 +6,7 @@ ProjectPage = React.createClass({
     getMeteorData() {
         // Get list ID from ReactRouter
         const projectId = this.props.id;
-        console.log('projectId: ' + projectId);
+        //console.log('projectId: ' + projectId);
         // Subscribe to the tasks we need to render this component
         const projectSubHandle = Meteor.subscribe("project", projectId);
 

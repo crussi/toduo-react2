@@ -40,7 +40,10 @@ NextActionYesNo = React.createClass({
         let questionStyle = styles.question;
         let btnStyle = styles.button;
         let question = this.props.question;
-        let task = sessionStore.get("task-in-process");
+        //let task = sessionStore.get("task-in-process");
+        let task = this.props.task;
+        console.dir(task);
+        console.log("next action: " + task.NextAction);
         let nextaction = task.NextAction; //62
         let nextActionClass = "col-xs-5";
         if ((nextaction.length > 42) && (nextaction.length <= 49)) {

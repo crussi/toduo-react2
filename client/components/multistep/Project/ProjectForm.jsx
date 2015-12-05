@@ -1,4 +1,3 @@
-//let { FormsyCheckbox, FormsyDate, FormsyRadio, FormsyRadioGroup, FormsySelect, FormsyText, FormsyTime, FormsyToggle } = FMUI;
 let ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 const {
@@ -6,11 +5,9 @@ const {
     Styles
     } = MUI;
 
-var LinkedStateMixin = React.addons.LinkedStateMixin;
 var update = React.addons.update;
 
 ProjectForm = React.createClass({
-    mixins: [ReactMeteorData,LinkedStateMixin],
     getMeteorData() {
         return {
             //someVar: Session.get('someVar')
@@ -19,18 +16,16 @@ ProjectForm = React.createClass({
     childContextTypes: {
         muiTheme: React.PropTypes.object
     },
-
     getChildContext(){
         return {
             muiTheme: Styles.ThemeManager.getMuiTheme(Styles.LightRawTheme)
         }
     },
-
     getInitialState: function () {
         return {
             canSubmit: false,
             textWidth: '256px',
-            tasks:new Array(5),
+            tasks: new Array(5),
             project: new Project()
         };
     },
@@ -56,7 +51,7 @@ ProjectForm = React.createClass({
         }
     },
     onChange: function(e,date) {
-        //console.dir(e);
+        //This func helps to keep new tasks updated
         let updateTask = function(index,value) {
             let tasks = this.state.tasks.slice();
             tasks.splice(index, 1, {"Task":value, "IsComplete":false});
@@ -66,7 +61,8 @@ ProjectForm = React.createClass({
             });
             return project;
         }
-        let project, tasks;
+        let project;
+        //DatePicker doesn't return an event
         let targetName = e ? e.target.name : 'DateDue'
         switch (targetName ){
             case 'Title':
@@ -85,46 +81,18 @@ ProjectForm = React.createClass({
                 });
                 break;
             case 'Task1':
-                project = updateTask.call(this,0,e.target.value);
-                break;
             case 'Task2':
-                project = updateTask.call(this,1,e.target.value);
-                break;
             case 'Task3':
-                project = updateTask.call(this,2,e.target.value);
-                break;
             case 'Task4':
-                project = updateTask.call(this,3,e.target.value);
-                break;
             case 'Task5':
-                project = updateTask.call(this,4,e.target.value);
+                let index = targetName.slice(-1) - 1;
+                project = updateTask.call(this,index,e.target.value);
                 break;
         }
         this.setState({project: project, canSubmit: project.validate()});
     },
-    //enableButton: function () {
-    //    this.setState({
-    //        canSubmit: true
-    //    });
-    //},
-    //
-    //disableButton: function () {
-    //    this.setState({
-    //        canSubmit: false
-    //    });
-    //},
     submitForm: function () {
-        console.log('submitForm');
-        //data.Title = "Michele's planter box";
-        //data.Outcome = "Michele will have a place to plant plants.";
-        //data.dateDue = "2015-11-01";
-        //data.Task1 = "Buy garden soil";
-        //data.Task2 = "Mix with soil ammendments";
-        //data.Task3 = "Fill to overflowing";
-        //let projectId;
-        //let project = this.state.project;
         Meteor.call("/projects/addNew", this.state.project, (err, res) => {
-            console.log('meteor.call projects addNew');
             if (err) {
                 console.log("Failed to add new project.");
                 return;
@@ -138,17 +106,14 @@ ProjectForm = React.createClass({
             }
         });
     },
-    notifyFormError: function (data) {
-        console.error('Form error:', data);
-    },
+    //notifyFormError: function (data) {
+    //    console.error('Form error:', data);
+    //},
     handleResize: function(e) {
         this.adjustTextWidth();
     },
-
     adjustTextWidth: function() {
-        //let width = this.refs.tasks.getDOMNode().offsetWidth;
         let width = this.refs.tasks.offsetWidth;
-        //console.log('width: ' + width);
         this.setState({
             textWidth: (width - 40) + 'px'
         });
@@ -160,28 +125,12 @@ ProjectForm = React.createClass({
     componentWillUnmount: function() {
         window.removeEventListener('resize', this.handleResize);
     },
-    componentWillUpdate(nextProps, nextState) {
-      console.dir(nextState);
-        //let project = update(this.state.project, {
-        //    Title: {$set: nextState.Title},
-        //    Outcome: {$set: nextState.Outcome},
-        //    DateDue: {$set: nextState.DateDue}
-        //});
-        //
-        //this.setState({project: project});
-    },
     render: function () {
-        //console.log('ProjectForm render');
-        //console.dir(this.state);
-        //console.dir(this.state.tasks);
-        //console.log(this.state.tasks);
-        //console.log(this.state.project.Tasks);
         //console.dir(this.state.project);
         //Here is how to apply styles to text fields:
         //style={{color:'blue'}} hintStyle={{color:'red'}} underlineStyle={{borderColor:'green'}} underlineFocusStyle={{borderColor:'purple'}}
         //floatingLabelStyle={{color:'yellow'}}
         let styles = this.styles;
-        //let { wordsError, numericError, urlError } = this.errorMessages;
         let textStyle = { color:'orange', width: this.state.textWidth};
         let hintStyle = this.styles.hint;
         let underlineStyle = this.styles.underline;
@@ -201,12 +150,8 @@ ProjectForm = React.createClass({
             callback: this.handleClick,
             hasPrev: true
         };
-        //console.log('minDate: ' + minDate);
-        //console.log('maxDate: ' + maxDate);
         return (
             <div style={styles.container}>
-
-
                     <div className="row">
                         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <div className="box box-container">
@@ -217,17 +162,12 @@ ProjectForm = React.createClass({
                                             <TextField style={textStyle}
                                                         name='Title'
                                                         onChange={this.onChange}
-                                                //required
                                                         maxLength={25}
                                                         hintText="What is project's title?"
                                                         floatingLabelText="Title" />
-
-
                                             <TextField style={textStyle}
                                                         name='Outcome'
-                                                       onChange={this.onChange}
-
-                                                //required
+                                                        onChange={this.onChange}
                                                         maxLength={100}
                                                         hintText="What is the expected outcome?"
                                                         floatingLabelText="Expected outcome" />
@@ -235,7 +175,6 @@ ProjectForm = React.createClass({
                                                         onChange={this.onChange}
                                                         hintText="Date due"
                                                         minDate={minDate} maxDate={maxDate} />
-
                                         </div>
                                     </div>
                                     <div className="col-xs-10 col-sm-5 col-md-5 col-lg-5" ref="tasks">

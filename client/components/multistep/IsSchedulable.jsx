@@ -7,6 +7,7 @@ IsSchedulable = React.createClass({
     },
     render(){
         let childProps = {
+            task: this.props.task,
             question: "Does this need to be done on a specific date and time?",
             handleNextStep: this.handleNextStep
         };

@@ -6,7 +6,7 @@ Actionable = React.createClass({
         this.props.handleNextStep('Actionable.' + val);
     },
     render(){
-        console.log('Actionable render');
+        //console.log('Actionable render');
         let childProps = {
             question: "Is this actionable?",
             handleNextStep: this.handleNextStep

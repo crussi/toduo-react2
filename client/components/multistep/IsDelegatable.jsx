@@ -7,6 +7,7 @@ IsDelegatable = React.createClass({
     },
     render(){
         let childProps = {
+            task: this.props.task,
             question: "Can this be delegated?",
             handleNextStep: this.handleNextStep
         };

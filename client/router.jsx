@@ -57,7 +57,7 @@ var listsRoutes = routeGroup('/lists', 'lists');
 listsRoutes.route('/', {action: renderf(Container, { name: "lists" }) } );
 listsRoutes.route('/checklists', {action: renderf(Container, { name: "checklists" }) } );
 listsRoutes.route('/reference', {action: renderf(Container, { name: "reference" }) } );
-listsRoutes.route('/:id', {action: function(params) { renderc(ReferencePage, { id: params.id }) }} );
+listsRoutes.route('/reference/:id', {action: function(params) { renderc(ReferencePage, { id: params.id }) }} );
 
 listsRoutes.route('/done', {action: renderf(Container, { name: "done" }) } );
 listsRoutes.route('/trash', {action: renderf(Container, { name: "trash" }) } );
