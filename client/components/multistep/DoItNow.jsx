@@ -42,6 +42,29 @@ DoItNow = React.createClass({
     handleNextStep(val){
         this.props.handleNextStep("DoItNow." + val);
     },
+    submitForm: function () {
+        let task = this.props.task;
+        task.set({
+            DateComplete: Common.Today(),
+            Type: "Done"
+        });
+        let data = {};
+        data.route = "/lists/done";
+        data.task = task;
+        Meteor.call("/tasks/addNew", data, (err, res) => {
+            if (err) {
+                console.log("Failed to add new task.");
+                return;
+            } else {
+                console.dir(res);
+                console.log("task add success id: " + res._id);
+
+                //projectId = res;
+                sessionStore.set("transition-new",res);
+                this.props.handleNextStep("DoItNow.Yes");
+            }
+        });
+    },
     render(){
         //console.log('MultiStepYesNo render');
         let headingStyle = styles.heading;
@@ -53,15 +76,15 @@ DoItNow = React.createClass({
         let task = this.props.task;
         let nextaction = task.NextAction;
         let len = nextaction.length;
-        let nextActionClass = "col-xs-5";
-        if ((nextaction.length > 32) && (nextaction.length <= 39)) {
-            nextActionClass = "col-xs-6";
-        } else if ((nextaction.length > 39) && (nextaction.length <= 50)) {
-            nextActionClass = "col-xs-7";
-        } else if (nextaction.length > 50) {
-            nextaction = String.truncate(nextaction, 47);
-            nextActionClass = "col-xs-7";
-        }
+        let nextActionClass = "col-xs-7";
+        //if ((nextaction.length > 32) && (nextaction.length <= 39)) {
+        //    nextActionClass = "col-xs-6";
+        //} else if ((nextaction.length > 39) && (nextaction.length <= 50)) {
+        //    nextActionClass = "col-xs-7";
+        //} else if (nextaction.length > 50) {
+        //    nextaction = String.truncate(nextaction, 47);
+        //    nextActionClass = "col-xs-7";
+        //}
         //let nextActionClass = (nextaction.length <= 50 ? "col-xs-5" : "col-xs-6");
         return <div className="col-xs-12 container">
             <div className="box box-container step">
@@ -75,7 +98,7 @@ DoItNow = React.createClass({
                     </div>
                     <div className="col-xs-4 align-center">
                         <div className="box-first box-container">
-                            <FlatButton style={btnStyle}  label="Yes" onClick={e => this.handleNextStep("Yes")}/>
+                            <FlatButton style={btnStyle}  label="Yes" onClick={this.submitForm}/>
                             <FlatButton style={btnStyle}  label="No" onClick={e => this.handleNextStep("No")}/>
                         </div>
                     </div>

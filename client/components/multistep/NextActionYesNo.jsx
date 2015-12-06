@@ -42,18 +42,18 @@ NextActionYesNo = React.createClass({
         let question = this.props.question;
         //let task = sessionStore.get("task-in-process");
         let task = this.props.task;
-        console.dir(task);
-        console.log("next action: " + task.NextAction);
+        //console.dir(task);
+        //console.log("next action: " + task.NextAction);
         let nextaction = task.NextAction; //62
-        let nextActionClass = "col-xs-5";
-        if ((nextaction.length > 42) && (nextaction.length <= 49)) {
-            nextActionClass = "col-xs-6";
-        } else if ((nextaction.length > 49) && (nextaction.length <= 60)) {
-            nextActionClass = "col-xs-7";
-        } else if (nextaction.length > 60) {
-            nextaction = String.truncate(nextaction, 57);
-            nextActionClass = "col-xs-7";
-        }
+        let nextActionClass = "col-xs-7";
+        //if ((nextaction.length > 42) && (nextaction.length <= 49)) {
+        //    nextActionClass = "col-xs-7";
+        //} else if ((nextaction.length > 49) && (nextaction.length <= 60)) {
+        //    nextActionClass = "col-xs-7";
+        //} else if (nextaction.length > 60) {
+        //    nextaction = String.truncate(nextaction, 57);
+        //    nextActionClass = "col-xs-7";
+        //}
         //let nextActionClass = (nextaction.length <= 50 ? "col-xs-5" : "col-xs-6");
         return <div className="col-xs-12 container">
             <div className="box box-container step">

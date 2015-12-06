@@ -12,7 +12,7 @@ IsSchedulable = React.createClass({
             handleNextStep: this.handleNextStep
         };
         return <div>
-            <ReactCSSTransitionGroup transitionName="example" transitionAppear={true} transitionAppearTimeout={250}>
+            <ReactCSSTransitionGroup transitionName="example" transitionAppear={true} transitionAppearTimeout={250} transitionEnterTimeout={250} transitionLeaveTimeout={250}>
                 <NextActionYesNo {...childProps}/>
             </ReactCSSTransitionGroup>
         </div>

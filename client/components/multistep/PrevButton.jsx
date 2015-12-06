@@ -1,5 +1,5 @@
 const { FlatButton, Styles } = MUI;
-
+//        backgroundColor: 'rgba(250,250,250,0.2)'
 const styles = {
     btnPrev: {
         position: 'absolute',
@@ -26,7 +26,7 @@ PrevButton = React.createClass({
         let style = styles.btnPrev;
         let prevBtn;
         if (this.props.hasPrev == true) {
-            prevBtn = <FlatButton style={style}  label="Prev" onClick={e => this.handleClick("Prev")}><i className="zmdi zmdi-chevron-left btn-icon"/></FlatButton>;
+            prevBtn = <FlatButton style={style} label="Prev" onClick={e => this.handleClick("Prev")}><i className="zmdi zmdi-chevron-left btn-icon"/></FlatButton>;
         }
         return <div>{prevBtn}</div>
     }

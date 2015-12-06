@@ -60,6 +60,7 @@ listsRoutes.route('/reference', {action: renderf(Container, { name: "reference" 
 listsRoutes.route('/reference/:id', {action: function(params) { renderc(ReferencePage, { id: params.id }) }} );
 
 listsRoutes.route('/done', {action: renderf(Container, { name: "done" }) } );
+listsRoutes.route('/done/:id', {action: function(params) { renderc(DonePage, { id: params.id }) }} );
 listsRoutes.route('/trash', {action: renderf(Container, { name: "trash" }) } );
 
 var contextsRoutes = routeGroup('/contexts', 'contexts');

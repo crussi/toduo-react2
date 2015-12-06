@@ -30,6 +30,11 @@ MultiStep = React.createClass({
     updateTask(task){
         this.setState({task:task});
     },
+    styles: {
+        multistep: {
+            position: 'relative'
+        }
+    },
     render(){
         //console.log('MultiStep render');
         //console.dir(this.state.task);
@@ -47,17 +52,24 @@ MultiStep = React.createClass({
             task: this.state.task
         };
         let hasPrev = nextkey.length > 1;
-        if (nextstep.component == InboxTransition) {
+        let multiStepStyle = this.styles.multistep;
+        if (nextstep.component.type.displayName == "InboxTransition") {
             hasPrev = false;
+        } else if (nextstep.component.type.displayName == "IsSchedulable") {
+            multiStepStyle["minHeight"] = "120px";
+        } else {
+            multiStepStyle["minHeight"] = "75px";
         }
+
         let prevProps = {
+            marginTop: '20px',
             callback: this.handlePrev,
             hasPrev: hasPrev
         }
         //console.dir(compProps);
         //let comp = React.cloneElement(nextstep.component, { callback: this.handleClick, stepProps: stepProps });
         let comp = React.cloneElement(nextstep.component, compProps);
-        return <div className="multi-step">
+        return <div className="multi-step" style={multiStepStyle}>
                     {comp}
                     <PrevButton {...prevProps}/>
                </div>
