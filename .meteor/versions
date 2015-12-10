@@ -34,7 +34,8 @@ id-map@1.0.4
 insecure@1.0.4
 ixdi:material-design-iconic-font@2.1.5
 izzilab:material-ui@0.2.2
-jagi:astronomy@1.2.2
+jagi:astronomy@1.2.6
+jagi:astronomy-relations@1.0.0
 jagi:astronomy-timestamp-behavior@1.1.0
 jagi:astronomy-validators@1.1.1
 jagi:reactive-map@2.0.0

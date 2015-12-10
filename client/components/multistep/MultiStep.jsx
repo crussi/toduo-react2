@@ -32,7 +32,8 @@ MultiStep = React.createClass({
     },
     styles: {
         multistep: {
-            position: 'relative'
+            position: 'relative',
+            overflow: 'visible'
         }
     },
     render(){

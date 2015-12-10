@@ -18,7 +18,7 @@ DelegatesPage = React.createClass({
 
         return {
             subsReady: subsReady,
-            items: Contacts.find({}, { sort: { sortorder: 1 } }),
+            items: Contacts.find({}, { sort: { name: 1 } }),
             //currentUser: Meteor.user(),
             //disconnected: ShowConnectionIssues.get() && (! Meteor.status().connected)
             disconnected: false

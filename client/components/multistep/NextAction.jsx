@@ -78,6 +78,9 @@ NextAction = React.createClass({
             NextAction: {$set: e.target.value}
         });
         //this.props.task = task;
+        if (!task.validate()) {
+            console.dir(task.getValidationErrors());
+        }
         this.setState({task: task, canSubmit: task.validate()});
     },
     submitForm: function () {

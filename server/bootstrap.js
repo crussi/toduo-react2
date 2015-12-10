@@ -109,7 +109,9 @@ Meteor.startup(function () {
     }
     Contacts.remove({});
     if (Contacts.find().count() === 0) {
+        Contacts.insert({_id: 'mUW6o-bq-ECBKMDGrVFMyA', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w', Name:'Adam'});
         Contacts.insert({_id: 'VKk7f5-Q2k2P0ENPACo2aA', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w', Name:'Butterfly'});
+        Contacts.insert({_id: 'h5ae_69FnU__A9EKJzP0uA', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w', Name:'Michele'});
         Contacts.insert({_id: 'Xt9dBGPO9Em0JABFN0E7tw', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w' , Name:'Marianne'});
         Contacts.insert({_id: '439xlfFRskqc32BMBjujIw', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w' , Name:'Bright Rite Carpet Cleaner'});
         Contacts.insert({_id: '1cI9Xb8g7UGf0mVVIs-BJw', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w' , Name:'Jose Gardener'});
@@ -117,5 +119,4 @@ Meteor.startup(function () {
         Contacts.insert({_id: 'coGjsF9_o0_k5Sc3j9RLUQ', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w' , Name:'Plumber'});
     }
 });
-
 

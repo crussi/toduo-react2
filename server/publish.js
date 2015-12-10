@@ -23,5 +23,22 @@ Meteor.publish('contexts', function() {
 });
 
 Meteor.publish('delegates', function() {
-    return Delegates.find({});
+    return Contacts.find({});
 });
+
+Meteor.publish('contacts', function() {
+    return Contacts.find({});
+});
+
+Meteor.publish('contact', function(id) {
+    var contact = Contact.findOne({_id:id});
+    return contact;
+});
+
+Meteor.publish('task', function(id) {
+    var task = Tasks.findOne({_id:id});
+    console.log('publish task');
+    console.dir(task);
+    return task;
+});
+

@@ -36,6 +36,7 @@ nextRoutes.route('/soon', {action: renderf(Container, { name: "soon" }) } );
 FlowRouter.route('/focus', {action: renderf(Container, { name: "focus" }) } );
 
 FlowRouter.route('/waitingfor', {action: renderf(Container, { name: "waiting for" }) } );
+FlowRouter.route('/waitingfor/:id/:delegateId', {action: function(params) { renderc(WaitingForPage, { id: params.id, delegateId: params.delegateId }) }} );
 
 
 var scheduledRoutes = routeGroup('/scheduled', 'scheduled');

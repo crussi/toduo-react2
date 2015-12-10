@@ -37,3 +37,6 @@
     margin-left: 55px;
     /*margin-left: 49px;*/
 }
+.overflow {
+    overflow: visible;
+}

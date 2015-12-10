@@ -48,6 +48,9 @@ ProjectForm = React.createClass({
         },
         underline: {
             color: '#bbb'
+        },
+        date: {
+            marginTop: '24px'
         }
     },
     onChange: function(e,date) {
@@ -134,6 +137,7 @@ ProjectForm = React.createClass({
         let textStyle = { color:'orange', width: this.state.textWidth};
         let hintStyle = this.styles.hint;
         let underlineStyle = this.styles.underline;
+        let dateStyle = this.styles.date;
         //console.dir(underlineStyle);
         //TODO: this needs to be put in a utility!
         var timestamp = (new Date()).getTime();
@@ -171,10 +175,12 @@ ProjectForm = React.createClass({
                                                         maxLength={100}
                                                         hintText="What is the expected outcome?"
                                                         floatingLabelText="Expected outcome" />
-                                            <DatePicker name='DateDue'
+
+                                            <DatePicker name='DateDue' style={dateStyle}
                                                         onChange={this.onChange}
                                                         hintText="Date due"
                                                         minDate={minDate} maxDate={maxDate} />
+
                                         </div>
                                     </div>
                                     <div className="col-xs-10 col-sm-5 col-md-5 col-lg-5" ref="tasks">
