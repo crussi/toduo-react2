@@ -47,4 +47,13 @@ Meteor.publish('task', function(id) {
     return Tasks.findOne({_id:id});
 });
 
+Meteor.publish('references', function() {
+    return References.find({});
+});
+
+Meteor.publish('trash', function() {
+    return Trash.find({});
+});
+
+
 

@@ -1,13 +1,13 @@
 
 
-ReferencePage = React.createClass({
+TrashPage = React.createClass({
     mixins: [ReactMeteorData],
 
     getMeteorData() {
-        const referenceId = this.props.id;
+        const trashId = this.props.id;
 
         const subHandles = [
-            Meteor.subscribe("references")
+            Meteor.subscribe("trash")
         ];
         const subsReady = _.all(subHandles, function (handle) {
             return handle.ready();
@@ -16,9 +16,9 @@ ReferencePage = React.createClass({
 
         return {
             subsReady: subsReady,
-            //task: Tasks.findOne({ _id: referenceId }),
+            //task: Tasks.findOne({ _id: trashId }),
             //Noe: work-a-round until minimongo supports $eq
-            references: References.find({}),
+            trash: Trash.find({}),
             //currentUser: Meteor.user(),
             //disconnected: ShowConnectionIssues.get() && (! Meteor.status().connected)
             disconnected: false
@@ -26,16 +26,17 @@ ReferencePage = React.createClass({
     },
 
     render() {
-
-        let list = this.data.references.map((reference) => {
+        console.log("TrashPage render");
+        console.dir(this.data.trash);
+        let list = this.data.trash.map((trashItem) => {
             //TODO: taskId passed in ... highlight row
 
             return [
-                <li key={reference._id}>{reference.Title}</li>
+                <li key={trashItem._id}>{trashItem.Title}</li>
             ]
         });
 
-        if (!this.data.references) {
+        if (!this.data.trash) {
             return <AppNotFound />;
         }
 

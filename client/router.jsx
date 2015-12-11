@@ -57,12 +57,12 @@ FlowRouter.route('/review', {action: renderf(Container, { name: "review" }) } );
 var listsRoutes = routeGroup('/lists', 'lists');
 listsRoutes.route('/', {action: renderf(Container, { name: "lists" }) } );
 listsRoutes.route('/checklists', {action: renderf(Container, { name: "checklists" }) } );
-listsRoutes.route('/reference', {action: renderf(Container, { name: "reference" }) } );
+listsRoutes.route('/reference', {action: function(params) { renderc(ReferencePage) }} );
 listsRoutes.route('/reference/:id', {action: function(params) { renderc(ReferencePage, { id: params.id }) }} );
-
-listsRoutes.route('/done', {action: renderf(Container, { name: "done" }) } );
+listsRoutes.route('/done', {action: function(params) { renderc(DonePage) }} );
 listsRoutes.route('/done/:id', {action: function(params) { renderc(DonePage, { id: params.id }) }} );
-listsRoutes.route('/trash', {action: renderf(Container, { name: "trash" }) } );
+listsRoutes.route('/trash', {action: function(params) { renderc(TrashPage) }} );
+listsRoutes.route('/trash/:id', {action: function(params) { renderc(TrashPage, { id: params.id }) }} );
 
 var contextsRoutes = routeGroup('/contexts', 'contexts');
 contextsRoutes.route('/', {action: renderf(Container, { name: "contexts" }) } );

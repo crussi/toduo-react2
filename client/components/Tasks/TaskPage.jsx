@@ -8,7 +8,7 @@ TaskPage = React.createClass({
         const type = this.props.type;
 
         const subHandles = [
-            Meteor.subscribe("task"), Meteor.subscribe("delegates")
+            Meteor.subscribe("tasks"), Meteor.subscribe("delegates")
         ];
         const subsReady = _.all(subHandles, function (handle) {
             return handle.ready();
@@ -28,7 +28,7 @@ TaskPage = React.createClass({
 
     render() {
         //const task = this.data.task;
-        console.dir(this.data.tasks);
+        //console.dir(this.data.tasks);
         let item;
         let list = this.data.tasks.map((task) => {
             //TODO: taskId passed in ... highlight row
@@ -41,7 +41,7 @@ TaskPage = React.createClass({
                 item
             ]
         });
-        console.log(list);
+
         if (!this.data.tasks) {
             return <AppNotFound />;
         }
