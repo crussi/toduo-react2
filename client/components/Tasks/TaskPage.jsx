@@ -4,28 +4,53 @@ TaskPage = React.createClass({
     mixins: [ReactMeteorData],
 
     getMeteorData() {
-        // Get list ID from ReactRouter
         const taskId = this.props.id;
-        //console.log('taskId: ' + taskId);
-        // Subscribe to the tasks we need to render this component
-        const subHandle = Meteor.subscribe("tasks", taskId);
+        const type = this.props.type;
+
+        const subHandles = [
+            Meteor.subscribe("task"), Meteor.subscribe("delegates")
+        ];
+        const subsReady = _.all(subHandles, function (handle) {
+            return handle.ready();
+        });
+
 
         return {
-            task: Tasks.findOne({ _id: taskId }),
-            loading: ! subHandle.ready()
+            subsReady: subsReady,
+            //task: Tasks.findOne({ _id: taskId }),
+            //Noe: work-a-round until minimongo supports $eq
+            tasks: Tasks.find({Type:{$not:{$ne:type}}}),
+            //currentUser: Meteor.user(),
+            //disconnected: ShowConnectionIssues.get() && (! Meteor.status().connected)
+            disconnected: false
         };
     },
 
     render() {
-        const task = this.data.task;
-
-        if (! task) {
+        //const task = this.data.task;
+        console.dir(this.data.tasks);
+        let item;
+        let list = this.data.tasks.map((task) => {
+            //TODO: taskId passed in ... highlight row
+            if (task.DelegateId.length == 0) {
+                item = <li key={task._id}>{task.Title}</li>
+            }else {
+                item = <li key={task._id}>{task.Title} delegated to: {task.Delegate.Name}</li>
+            }
+            return [
+                item
+            ]
+        });
+        console.log(list);
+        if (!this.data.tasks) {
             return <AppNotFound />;
         }
 
         return (
             <div>
-                {task.Title}
+                <ul>
+                    {list}
+                </ul>
             </div>
         );
     }

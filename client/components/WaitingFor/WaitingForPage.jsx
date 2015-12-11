@@ -4,23 +4,21 @@ WaitingForPage = React.createClass({
     mixins: [ReactMeteorData],
 
     getMeteorData() {
-        // Get list ID from ReactRouter
         const taskId = this.props.id;
-        const delegateId = this.props.delegateId;
-        // Subscribe to the tasks we need to render this component
         const subHandles = [
-            Meteor.subscribe("contacts"),
-            Meteor.subscribe("task")
+            Meteor.subscribe("task"), Meteor.subscribe("delegates")
         ];
         const subsReady = _.all(subHandles, function (handle) {
             return handle.ready();
         });
 
+
         return {
             subsReady: subsReady,
-            task: Tasks.findOne({ _id: taskId }),
-            contact: Contacts.findOne({_id: delegateId}),
-
+            //task: Tasks.findOne({ _id: taskId }),
+            tasks: Tasks.find({$and: [
+                { DelegateId: {$ne:''}} ,
+                { DelegateId: {$exists: true }}]}),
             //currentUser: Meteor.user(),
             //disconnected: ShowConnectionIssues.get() && (! Meteor.status().connected)
             disconnected: false
@@ -28,26 +26,24 @@ WaitingForPage = React.createClass({
     },
 
     render() {
-        const task = this.data.task;
-        const contact = this.data.contact;
-        //task.delegates().forEach(function (delegate) {
-        //    /* Do something with the address */
-        //    console.log('Waitingfor render');
-        //    console.dir(delegate);
-        //});
-        console.log('waiting for render');
-        console.dir(task);
-
-        console.dir(contact);
-        //console.dir(task.delegate());
-
-        if (! task) {
+        //const task = this.data.task;
+        console.dir(this.data.tasks);
+        let list = this.data.tasks.map((task) => {
+            //TODO: taskId passed in ... highlight row
+            return [
+                <li key={task._id}>{task.Title} delegated to: {task.Delegate.Name}</li>
+            ]
+        });
+        console.log(list);
+        if (!this.data.tasks) {
             return <AppNotFound />;
         }
 
         return (
             <div>
-                {task.Title} delegated to: {contact.Name}
+                <ul>
+                {list}
+                </ul>
             </div>
         );
     }

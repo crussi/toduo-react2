@@ -1,3 +1,8 @@
+
+//TODO: Remember to go through and make these user/account specific!!!!
+//TODO: Remember to go through and make these user/account specific!!!!
+//TODO: Remember to go through and make these user/account specific!!!!
+//TODO: Remember to go through and make these user/account specific!!!!
 Meteor.publish('inbox', function() {
     return Inbox.find();
 });
@@ -23,7 +28,11 @@ Meteor.publish('contexts', function() {
 });
 
 Meteor.publish('delegates', function() {
-    return Contacts.find({});
+    return Delegates.find({});
+});
+
+Meteor.publish('delegate', function(id) {
+    return Delegate.findOne({_id:id});
 });
 
 Meteor.publish('contacts', function() {
@@ -31,14 +40,11 @@ Meteor.publish('contacts', function() {
 });
 
 Meteor.publish('contact', function(id) {
-    var contact = Contact.findOne({_id:id});
-    return contact;
+    return Contact.findOne({_id:id});
 });
 
 Meteor.publish('task', function(id) {
-    var task = Tasks.findOne({_id:id});
-    console.log('publish task');
-    console.dir(task);
-    return task;
+    return Tasks.findOne({_id:id});
 });
+
 

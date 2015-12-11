@@ -40,8 +40,8 @@ Delegate = React.createClass({
 
         return {
             subsReady: subsReady,
-            delegates: Contacts.find({}, { sort: { Name: 1 } }).map(function (contact) {
-                return {text: contact.Name, payload: contact._id};
+            delegates: Delegates.find({}, { sort: { Name: 1 } }).map(function (delegate) {
+                return {text: delegate.Name, payload: delegate._id};
             }),
             //currentUser: Meteor.user(),
             //disconnected: ShowConnectionIssues.get() && (! Meteor.status().connected)
@@ -102,10 +102,11 @@ Delegate = React.createClass({
         //this.setState({path: this.state.path.concat(index)});
         let task = update(this.state.task, {
             DelegateId: {$set: menuItem.payload},
-            Delegate:{$set: menuItem.text},
+            //DelegateName:{$set: menuItem.text},
             Type: {$set: "Waiting for"}
         });
-        ////this.props.task = task;
+        task.loadDelegate();
+        console.dir(task);
         this.setState({task: task, canSubmit: task.validate()});
     },
     submitForm: function () {
@@ -123,6 +124,7 @@ Delegate = React.createClass({
 
                 //projectId = res;
                 sessionStore.set("transition-new",res);
+                this.props.updateTask(this.state.task);
                 this.props.handleNextStep("Delegate.Submit");
             }
         });
@@ -149,7 +151,7 @@ Delegate = React.createClass({
         window.removeEventListener('resize', this.handleResize);
     },
     render: function () {
-        console.dir(this.data.delegates);
+        //console.dir(this.data.delegates);
         let styles = this.styles;
         let questionStyle = styles.question;
         let textStyle = { color:'orange', width: this.state.textWidth};

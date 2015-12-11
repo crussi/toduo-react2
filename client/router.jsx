@@ -35,8 +35,8 @@ nextRoutes.route('/soon', {action: renderf(Container, { name: "soon" }) } );
 
 FlowRouter.route('/focus', {action: renderf(Container, { name: "focus" }) } );
 
-FlowRouter.route('/waitingfor', {action: renderf(Container, { name: "waiting for" }) } );
-FlowRouter.route('/waitingfor/:id/:delegateId', {action: function(params) { renderc(WaitingForPage, { id: params.id, delegateId: params.delegateId }) }} );
+ FlowRouter.route('/waitingfor', {action: function(params) { renderc(WaitingForPage) }} );
+FlowRouter.route('/waitingfor/:id', {action: function(params) { renderc(WaitingForPage, { id: params.id}) }} );
 
 
 var scheduledRoutes = routeGroup('/scheduled', 'scheduled');
@@ -46,7 +46,7 @@ scheduledRoutes.route('/reminders', {action: renderf(Container, { name: "reminde
 
 var somedayRoutes = routeGroup('/someday', 'someday');
 somedayRoutes.route('/', {action: renderf(Container, { name: "someday" }) } );
-somedayRoutes.route('/:id', {action: function(params) { renderc(TaskPage, { id: params.id }) }} );
+somedayRoutes.route('/:id', {action: function(params) { renderc(TaskPage, { id: params.id, type: "Someday" }) }} );
 
 var projectRoutes = routeGroup('/project', 'project');
 projectRoutes.route('/', {action: renderf(Container, { name: "projects" }) } );
