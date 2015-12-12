@@ -1,4 +1,4 @@
- Ant = React.createClass({
+Ant = React.createClass({
     render(){
         return <div>
             <p>I am an ant, I keep busy!</p>
@@ -35,7 +35,7 @@ nextRoutes.route('/soon', {action: renderf(Container, { name: "soon" }) } );
 
 FlowRouter.route('/focus', {action: renderf(Container, { name: "focus" }) } );
 
- FlowRouter.route('/waitingfor', {action: function(params) { renderc(WaitingForPage) }} );
+FlowRouter.route('/waitingfor', {action: function(params) { renderc(WaitingForPage) }} );
 FlowRouter.route('/waitingfor/:id', {action: function(params) { renderc(WaitingForPage, { id: params.id}) }} );
 
 

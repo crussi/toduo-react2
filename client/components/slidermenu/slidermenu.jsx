@@ -27,15 +27,31 @@ SliderMenu = React.createClass({
         }
     },
     componentDidMount: function() {
-        window.addEventListener('popstate', this.handleRouteChange);
+        window.addEventListener('popstate', this.handlePopstate);
+        Emitter.on('route-path-changed', this.handleRouteChange);
     },
     componentWillUnmount: function() {
-        window.removeEventListener('popstate', this.handleRouteChange);
+        window.removeEventListener('popstate', this.handlePopstate);
+        Emitter.removeListener('route-path-changed', this.handleRouteChange);
+    },
+    handlePopstate(event) {
+        this.updateRouteState(event.state.path);
     },
     handleRouteChange(event){
-        let routestate = this.props.routestate[event.state.path];
+        console.log('handleRouteChange');
+        console.dir(event);
+        this.updateRouteState(event.path);
+    },
+    updateRouteState(route){
+        console.log("updateRouteState " + route);
+        //console.dir(this.props.routestate);
+        let routestate = this.props.routestate[route];
+        console.log('routestate');
+        console.dir(routestate);
         let path = routestate ? routestate[0] : [];
+        console.log('path: ' + path);
         let selected = routestate ? routestate[1] : [];
+        console.log('selected: ' + selected);
         this.setState({path: path});
         this.setState({selected: selected});
     },
@@ -61,8 +77,9 @@ SliderMenu = React.createClass({
         }
     },
     render() {
-        //console.log('slidermenu render ');
+        console.log('slidermenu render ');
         //console.dir(this.data);
+        //console.dir(this.state);
         const {path} = this.state;
         let selectedId = '';
         //let item = {};

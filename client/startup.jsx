@@ -3,6 +3,8 @@
 
 Meteor.startup(function () {
   sessionStore = new ReactiveDict();
+  //Creating EventEmitter object
+
   //Note: this is needed for material-ui datepicker.  Otherwise, I was doing fine without it.
   injectTapEventPlugin();
   //console.log('startup render sidebarapp');

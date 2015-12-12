@@ -31,3 +31,4 @@ jagi:astronomy-timestamp-behavior
 reactive-var
 reactive-dict
 jagi:astronomy-relations
+raix:eventemitter

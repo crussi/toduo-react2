@@ -135,7 +135,7 @@ SidebarApp = React.createClass({
     render() {
 
         //console.log('sidebarapp render');
-        let sidebar = <SidebarContent routestate={this.props.routestate} />;
+        let sidebar = <SidebarContent routestate={routestate} />;
 
         let contentHeader = (
             <span>
