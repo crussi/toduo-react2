@@ -100,8 +100,8 @@ ProjectForm = React.createClass({
                 console.log("Failed to add new project.");
                 return;
             } else {
-                console.dir(res);
-                console.log("project add success id: " + res._id);
+                //console.dir(res);
+                //console.log("project add success id: " + res._id);
 
                 //projectId = res;
                 sessionStore.set("transition-new",res);

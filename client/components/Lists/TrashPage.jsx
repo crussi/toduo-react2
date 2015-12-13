@@ -26,8 +26,8 @@ TrashPage = React.createClass({
     },
 
     render() {
-        console.log("TrashPage render");
-        console.dir(this.data.trash);
+        //console.log("TrashPage render");
+        //console.dir(this.data.trash);
         let list = this.data.trash.map((trashItem) => {
             //TODO: taskId passed in ... highlight row
 

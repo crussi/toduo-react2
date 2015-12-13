@@ -11,6 +11,10 @@ Meteor.publish('menudata', function() {
     return MenuData.find();
 });
 
+Meteor.publish('routestatedata', function() {
+    return RouteStateData.find();
+});
+
 Meteor.publish('project', function(id) {
     return Projects.find({_id:id});
 });

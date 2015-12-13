@@ -98,7 +98,7 @@ Delegate = React.createClass({
         });
     },
     onChange: function(event, selectedIndex, menuItem){
-        console.dir(menuItem);
+        //console.dir(menuItem);
         //this.setState({path: this.state.path.concat(index)});
         let task = update(this.state.task, {
             DelegateId: {$set: menuItem.payload},
@@ -106,20 +106,20 @@ Delegate = React.createClass({
             Type: {$set: "Waiting for"}
         });
         task.loadDelegate();
-        console.dir(task);
+        //console.dir(task);
         this.setState({task: task, canSubmit: task.validate()});
     },
     submitForm: function () {
         let data = {};
         data.route = "/waitingfor";
         data.task = this.state.task;
-        console.dir(data.task);
+        //console.dir(data.task);
         Meteor.call("/tasks/addNew", data, (err, res) => {
             if (err) {
                 console.log("Failed to add new task.");
                 return;
             } else {
-                console.dir(res);
+                //console.dir(res);
                 console.log("task add success id: " + res._id);
 
                 //projectId = res;

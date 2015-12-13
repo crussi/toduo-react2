@@ -56,8 +56,8 @@ DoItNow = React.createClass({
                 console.log("Failed to add new task.");
                 return;
             } else {
-                console.dir(res);
-                console.log("task add success id: " + res._id);
+                //console.dir(res);
+                //console.log("task add success id: " + res._id);
 
                 //projectId = res;
                 sessionStore.set("transition-new",res);

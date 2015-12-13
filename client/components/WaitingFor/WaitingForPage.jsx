@@ -27,7 +27,7 @@ WaitingForPage = React.createClass({
 
     render() {
         //const task = this.data.task;
-        console.dir(this.data.tasks);
+        //console.dir(this.data.tasks);
         let list = this.data.tasks.map((task) => {
             //TODO: taskId passed in ... highlight row
             return [

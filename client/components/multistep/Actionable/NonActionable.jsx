@@ -126,7 +126,7 @@ NonActionableForm = React.createClass({
                 console.dir(err);
                 return;
             } else {
-                console.log("reference add success id: " + res._id);
+                //console.log("reference add success id: " + res._id);
                 sessionStore.set("transition-new",res);
                 this.props.handleNextStep("NonActionable." + task.Type);
             }
