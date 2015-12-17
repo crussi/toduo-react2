@@ -80,6 +80,11 @@
 }
 
 /*.list-items .list-item.editing .delete-item {*/
+.list-items .list-item.editing input[type="text"]{
+    background-color: #fff;
+    height: 25px;
+    margin-top: 8px;
+}
 .list-items .list-item:hover .delete-item {
     display: inline-block;
 }
@@ -139,4 +144,16 @@ button, input, select, textarea {
 }
 .full-height {
     height: 100%;
+}
+.sortable-list{
+    overflow-y: scroll;
+}
+.titlepanel-container {
+    margin-top: 54px;
+    width: 100%;
+    padding: 8px;
+    height: 100vh;
+    height: -webkit-calc(100vh - 54px);
+    height: -moz-calc(100vh - 54px);
+    height: calc(100vh - 54px);
 }

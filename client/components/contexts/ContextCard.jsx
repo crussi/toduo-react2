@@ -7,7 +7,7 @@ const {
     } = MUI;
 
 ContextCard = React.createClass({
-    trianglify() {
+    //trianglify() {
         //let img = this.refs.something.getDOMNode();
         //let img = this.refs.something;
         //let pattern = Trianglify({
@@ -20,17 +20,17 @@ ContextCard = React.createClass({
         //
         //});
         //img.src = pattern.png();
-    },
-    handleResize: function(e) {
-        //this.trianglify();
-    },
-    componentDidMount: function () {
-        window.addEventListener('resize', this.handleResize);
-        //this.trianglify();
-    },
-    componentWillUnmount: function() {
-        window.removeEventListener('resize', this.handleResize);
-    },
+    //},
+    //handleResize: function(e) {
+    //    this.trianglify();
+    //},
+    //componentDidMount: function () {
+    //    window.addEventListener('resize', this.handleResize);
+    //    this.trianglify();
+    //},
+    //componentWillUnmount: function() {
+    //    window.removeEventListener('resize', this.handleResize);
+    //},
     render(){
         let cardStyle = {
           //height: this.props.height

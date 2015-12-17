@@ -18,7 +18,7 @@ RolesPage = React.createClass({
 
         return {
             subsReady: subsReady,
-            items: Roles.find({}, { sort: { sortOrder: 1 } }),
+            items: Roles.find({}, { sort: { sortOrder: 1 } }).fetch(),
             //currentUser: Meteor.user(),
             //disconnected: ShowConnectionIssues.get() && (! Meteor.status().connected)
             disconnected: false
@@ -90,7 +90,7 @@ RolesPage = React.createClass({
             onAddItem: this.onAddItem
         }
 
-        return <ContextPage2 {...contextProps}/>
+        return <ContextPage3 {...contextProps}/>
 
     }
 });

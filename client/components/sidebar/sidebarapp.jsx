@@ -24,8 +24,8 @@ SidebarApp = React.createClass({
             touch: true,
             touchHandleWidth: 20,
             dragToggleDistance: 30,
-            inboxValue:'',
-            viewportHeight: 0
+            inboxValue:''
+            //viewportHeight: 0
         };
     },
     childContextTypes: {
@@ -42,10 +42,10 @@ SidebarApp = React.createClass({
             //    selectedPlayer: Players.findOne(this.state.selectedPlayerId)
         }
     },
-    handleResize: function(e) {
-        let viewportHeight = window.innerHeight - 54;
-        this.setState({viewportHeight: viewportHeight + 'px'});
-    },
+    //handleResize: function(e) {
+    //    let viewportHeight = window.innerHeight - 54;
+    //    this.setState({viewportHeight: viewportHeight + 'px'});
+    //},
     //componentDidMount: function () {
     //    window.addEventListener('resize', this.handleResize);
     //    this.handleResize();
@@ -68,12 +68,12 @@ SidebarApp = React.createClass({
         let mql = window.matchMedia(`(min-width: 800px)`);
         mql.addListener(this.mediaQueryChanged);
         this.setState({mql: mql, docked: mql.matches});
-        window.addEventListener('resize', this.handleResize);
-        this.handleResize();
+        //window.addEventListener('resize', this.handleResize);
+        //this.handleResize();
     },
     componentWillUnmount() {
         this.state.mql.removeListener(this.mediaQueryChanged);
-        window.removeEventListener('resize', this.handleResize);
+        //window.removeEventListener('resize', this.handleResize);
     },
 
     mediaQueryChanged() {
@@ -161,8 +161,8 @@ SidebarApp = React.createClass({
         };
 
         let titleProps = {
-            title: contentHeader,
-            viewportHeight: this.state.viewportHeight
+            title: contentHeader
+            //viewportHeight: this.state.viewportHeight
         };
 
         return (

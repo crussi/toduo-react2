@@ -24,7 +24,8 @@ const styles = {
         marginTop: '54px',
         padding: '8px',
         //backgroundColor: '#f2f2f2',
-        height: '100%',
+        //height: '100%',
+        height: 'calc(100vh-54px)',
         width: '100%'
 
         //marginRight: '20px'
@@ -41,11 +42,12 @@ TitlePanel = React.createClass({
         let rootStyle = this.props.style ?
             update(styles.root, {$merge: this.props.style}) :
             styles.root;
-        styles.content.height = this.props.viewportHeight;
+        //TODO: trying to convert to using 100vh
+        //styles.content.height = this.props.viewportHeight;
         return (
             <div style={rootStyle}>
                 <div style={styles.header}>{this.props.title}</div>
-                <div style={styles.content}>
+                <div className="titlepanel-container">
                     {this.props.children}
                 </div>
             </div>

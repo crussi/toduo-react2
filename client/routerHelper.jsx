@@ -26,11 +26,11 @@ Tracker.autorun(function() {
     var currentContext = FlowRouter.current();
     // do anything with the current context
     // or anything you wish
-    console.dir(currentContext);
+    //console.dir(currentContext);
     //var path = currentContext.route ? currentContext.route.path : "";
     var path = currentContext.path ? currentContext.path : "";
     path = (path.substr(-path.length) === "/") ? path.slice(0, -1) : path;
-    console.log("route changed: " + path);
+    //console.log("route changed: " + path);
     //console.dir(currentContext.route.path);
     Emitter.emit('route-path-changed', {
         path: path

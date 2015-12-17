@@ -71,7 +71,7 @@ SortableList = React.createClass({
         //    }</ul>
 
 
-        return <div>{
+        return <div className="sortable-list">{
             this.state.items.map((item) => {
                 let itemProps = {
                     "key": item._id,

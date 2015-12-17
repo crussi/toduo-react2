@@ -16,7 +16,12 @@ ContextItem2 = React.createClass({
             curText: null
         };
     },
-    onDoubleClick(){
+    onDoubleClick(e){
+        if (e.target) {
+            let val = e.target.value;
+            e.target.value = "";
+            e.target.value = val;
+        }
         this.setState({
             focused: true,
             curText: this.props.item.Name
@@ -24,6 +29,7 @@ ContextItem2 = React.createClass({
         this.props.onInitiateEdit();
     },
     onFocus() {
+        console.log('onFocus');
         this.setState({
             focused: true,
             curText: this.props.item.Name
@@ -40,7 +46,7 @@ ContextItem2 = React.createClass({
         this.props.onRemoveItem();
     },
     onTextChange(event) {
-        console.log('ContextItem2 onTextChange');
+        //console.log('ContextItem2 onTextChange');
         const curText = event.target.value;
         this.setState({curText: curText});
 
@@ -54,6 +60,8 @@ ContextItem2 = React.createClass({
         this.updateText(curText);
     },
     render() {
+        //console.log("ContextItem2 render");
+        //console.dir(this.state);
         let className = "list-item";
 
         if (this.props.beingEdited) {
@@ -80,9 +88,11 @@ ContextItem2 = React.createClass({
                     type="text"
                     value={this.state.focused ? this.state.curText : this.props.item.Name}
                     placeholder="Name"
-                    onDoubleClick={ this.onDoubleClick }
+                    onDoubleClick={this.onDoubleClick }
                     onBlur={ this.onBlur }
-                    onChange={ this.onTextChange } />
+                    onChange={ this.onTextChange }
+                    readOnly={!this.state.focused}
+                />
                 <a className="delete-item"
                    onClick={ this.onRemoveItem }>
                     <i className="zmdi zmdi-close icon-trash" />
