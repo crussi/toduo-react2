@@ -1,23 +1,9 @@
-const {
-    List,
-    ListDivider,
-    TextField,
-    Card,
-    CardMedia,
-    CardTitle,
-    CardText,
-    FloatingActionButton,
-    FontIcon
 
-    } = MUI;
-
-const Colors = MUI.Colors;
-var update = React.addons.update;
 
 SortableList = React.createClass({
     mixins: [SortableMixin],
 
-    //Note: this HAS to be called items
+    //Note: state HAS to be contain items
     getInitialState: function() {
         return {
             items: this.props.list,
@@ -30,29 +16,18 @@ SortableList = React.createClass({
         });
     },
     handleSort: function (/** Event */evt) {
-        //console.log('handleSort in SortableList');
-        //console.dir(evt);
-        //let updateItemSort = function(index,value) {
         let items = this.state.items.slice();
         //console.dir(items);
         let i = 0;
         let min = Math.min(evt.oldIndex,evt.newIndex);
         let max = Math.max(evt.oldIndex,evt.newIndex);
         let list = [];
-        //Yes, this could be more concise, but, this
-        //is the most straight forward ...
         for (i=min;i<=max;i++){
             items[i].sortOrder=i;
             list.push({_id: items[i]._id, sortOrder: i});
         }
-        //console.dir(list);
-        this.setState({items: items});
+        //this.setState({items: items});
         this.props.onSortChange(list);
-        //}
-        /*..*/
-
-
-        //this.state.items[oldIndex].sortOrder = newIndex
     },
     setTaskBeingEdited(taskId) {
         this.setState({
