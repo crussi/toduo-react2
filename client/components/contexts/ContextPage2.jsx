@@ -13,10 +13,10 @@ const {
 
 const Colors = MUI.Colors;
 
-ContextPage = React.createClass({
-
+ContextPage2 = React.createClass({
     getInitialState() {
         return {
+
             taskBeingEditedId: null
         };
     },
@@ -34,31 +34,44 @@ ContextPage = React.createClass({
         this.props.onAddItem();
     },
     onTextChange(itemId, newText) {
+        console.log('ContextPage2 onTextChange');
         //console.log('onTextChange itemId: ' + itemId + ' newText: ' + newText);
         this.props.onTextChange(itemId, newText);
     },
+    onSortChange(list){
+        console.log('ConextPage2 updateRoles');
+        this.props.onSortChange(list);
+    },
+    componentWillUpdate: function(nextProps, nextState){
+        // perform any preparations for an upcoming update
+        //console.dir(nextProps);
+
+    },
     render(){
+        //console.log('ContextPage2 render');
+        //console.dir(this.state.items);
+        //comp =  <div>{
+        //    this.state.items.map((item) => {
+        //        let itemProps = {
+        //            "key": item._id,
+        //            "item": item,
+        //            "beingEdited": item._id === this.state.taskBeingEditedId,
+        //            "onInitiateEdit": this.setTaskBeingEdited.bind(this, item._id),
+        //            "onStopEdit": this.setTaskBeingEdited.bind(this, null),
+        //            "onRemoveItem": this.onRemoveItem.bind(this, item._id),
+        //            "onTextChange": this.onTextChange.bind(this, item._id)
+        //            };
+        //        return <ContextItem {...itemProps}/>
+        //        })
+        //    }</div>
 
-        comp = this.props.data.items.map((item) => {
-            let itemProps = {
-                "key": item._id,
-                "item": item,
-                "beingEdited": item._id === this.state.taskBeingEditedId,
-                "onInitiateEdit": this.setTaskBeingEdited.bind(this, item._id),
-                "onStopEdit": this.setTaskBeingEdited.bind(this, null),
-                "onRemoveItem": this.onRemoveItem.bind(this, item._id),
-                "onTextChange": this.onTextChange.bind(this, item._id)
-            };
-
-            return [
-                <ContextItem {...itemProps}/>
-
-            ]
-        });
-        //if (this.props.sortable) {
-        //    comp = <SortableList list={comp}/>
-        //}
-
+let listProps = {
+    list: this.props.data.items.fetch(),
+    "onRemoveItem": this.onRemoveItem,
+    "onTextChange": this.onTextChange,
+    "onSortChange": this.onSortChange
+}
+comp = <SortableList {...listProps}/>
         //
         //let sectionStyle = {
         //    height:this.props.height,
@@ -72,9 +85,9 @@ ContextPage = React.createClass({
         //console.dir(sectionStyle);
         let list =  <div className="row">
             <div className="list-items col-xs-4">
-                <List>
+                <div>
                     {comp}
-                </List>
+                </div>
             </div>
         </div>;
 

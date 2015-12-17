@@ -128,17 +128,17 @@ Meteor.startup(function () {
         Contacts.insert({_id: 'mTGY8FxbYEWDLoySaUXpRg', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w' , Name:'Felix'});
     }
 
-    Delegates.remove({});
-    if (Delegates.find().count() === 0) {
-        Delegates.insert({_id: 'UbiRvfStqE_aQ4dTTfw_vw', ContactId: 'mUW6o-bq-ECBKMDGrVFMyA', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w', Name:'Adam'});
-        Delegates.insert({_id: 'XwNaQ4psS0y5ZAzRQ4OXEQ', ContactId: 'VKk7f5-Q2k2P0ENPACo2aA', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w', Name:'Butterfly'});
-        Delegates.insert({_id: 'JywQ6pWiSEyljFqdP7fkmQ', ContactId: 'h5ae_69FnU__A9EKJzP0uA', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w', Name:'Michele'});
-        Delegates.insert({_id: 'Z5kzbnc8LE_BsewdCTkqCw', ContactId: 'Xt9dBGPO9Em0JABFN0E7tw', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w' , Name:'Marianne'});
-        Delegates.insert({_id: 'nLops9sNQUqsDVrld7Nn8A', ContactId: '439xlfFRskqc32BMBjujIw', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w' , Name:'Bright Rite Carpet Cleaner'});
-        Delegates.insert({_id: 'pB36lmT1yU6onziLoVZq7A', ContactId: '1cI9Xb8g7UGf0mVVIs-BJw', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w' , Name:'Jose Gardener'});
-        Delegates.insert({_id: 'SIqamuGSdE_so99GyNoBPA', ContactId: 'TRRBZFhlp0GNwF8J5FoOGw', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w' , Name:'AHS'});
-        Delegates.insert({_id: 'ZI0ePJqR-k_GrsWbRLIpRg', ContactId: 'H-bSPWFndUm3POIdfxgIPg', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w' , Name:'Chris'});
+    Projects.remove({});
+    if (Projects.find().count() === 0) {
+        Projects.insert({_id: '7EHOtAYARkG0c43qsDH5cQ', Title: "Project 1", 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w',
+            Tasks:[{Task:'Step 1',IsComplete:false},{Task:'Step 2',IsComplete:false},{Task:'Step 3',IsComplete:false}]});
+        Projects.insert({_id: '0dCP51BWpEuPWDLiWVKQOQ', Title: "Project 2", 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w',
+            Tasks:[{Task:'Step 1',IsComplete:false},{Task:'Step 2',IsComplete:false},{Task:'Step 3',IsComplete:false}]});
+        Projects.insert({_id: 'C_xUMSgdpEuS4Yt1XlO-XQ', Title: "Project 3", 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w',
+            Tasks:[{Task:'Step 1',IsComplete:false},{Task:'Step 2',IsComplete:false},{Task:'Step 3',IsComplete:false}]});
     }
+
+
 
 });
 

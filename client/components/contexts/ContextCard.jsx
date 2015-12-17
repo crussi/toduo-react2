@@ -9,24 +9,24 @@ const {
 ContextCard = React.createClass({
     trianglify() {
         //let img = this.refs.something.getDOMNode();
-        let img = this.refs.something;
-        let pattern = Trianglify({
-            width: img.offsetWidth,
-            height: img.offsetHeight,
-            cell_size: 125,
-            variance: "1",
-            x_colors: ['#004D40','#00695C','#00796B','#00897B','#009688','#26A69A','#4DB6AC','#80CBC4','#00BFA5','#1DE9B6','#64FFDA'],
-            y_colors: ['#64FFDA','#1DE9B6','#00BFA5','#80CBC4','#4DB6AC','#26A69A','#009688','#00897B','#00796B','#00695C','#004D40']
-
-        });
-        img.src = pattern.png();
+        //let img = this.refs.something;
+        //let pattern = Trianglify({
+        //    width: img.offsetWidth,
+        //    height: img.offsetHeight,
+        //    cell_size: 125,
+        //    variance: "1",
+        //    x_colors: ['#004D40','#00695C','#00796B','#00897B','#009688','#26A69A','#4DB6AC','#80CBC4','#00BFA5','#1DE9B6','#64FFDA'],
+        //    y_colors: ['#64FFDA','#1DE9B6','#00BFA5','#80CBC4','#4DB6AC','#26A69A','#009688','#00897B','#00796B','#00695C','#004D40']
+        //
+        //});
+        //img.src = pattern.png();
     },
     handleResize: function(e) {
-        this.trianglify();
+        //this.trianglify();
     },
     componentDidMount: function () {
         window.addEventListener('resize', this.handleResize);
-        this.trianglify();
+        //this.trianglify();
     },
     componentWillUnmount: function() {
         window.removeEventListener('resize', this.handleResize);

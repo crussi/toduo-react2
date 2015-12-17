@@ -1,6 +1,6 @@
 
 
-ContextItem = React.createClass({
+ContextItem2 = React.createClass({
     propTypes: {
         item: React.PropTypes.object.isRequired,
         onStopEdit: React.PropTypes.func,
@@ -16,7 +16,13 @@ ContextItem = React.createClass({
             curText: null
         };
     },
-
+    onDoubleClick(){
+        this.setState({
+            focused: true,
+            curText: this.props.item.Name
+        });
+        this.props.onInitiateEdit();
+    },
     onFocus() {
         this.setState({
             focused: true,
@@ -34,6 +40,7 @@ ContextItem = React.createClass({
         this.props.onRemoveItem();
     },
     onTextChange(event) {
+        console.log('ContextItem2 onTextChange');
         const curText = event.target.value;
         this.setState({curText: curText});
 
@@ -54,18 +61,33 @@ ContextItem = React.createClass({
         }
 
         return (
+            //<div className={ className }>
+            //    <input
+            //        type="text"
+            //        value={this.state.focused ? this.state.curText : this.props.item.Name}
+            //        placeholder="Name"
+            //        onFocus={ this.onFocus }
+            //        onBlur={ this.onBlur }
+            //        onChange={ this.onTextChange } />
+            //    <a className="delete-item"
+            //       onClick={ this.onRemoveItem }>
+            //        <i className="zmdi zmdi-close icon-trash" />
+            //    </a>
+            //</div>
             <div className={ className }>
+
                 <input
                     type="text"
                     value={this.state.focused ? this.state.curText : this.props.item.Name}
                     placeholder="Name"
-                    onFocus={ this.onFocus }
+                    onDoubleClick={ this.onDoubleClick }
                     onBlur={ this.onBlur }
                     onChange={ this.onTextChange } />
                 <a className="delete-item"
                    onClick={ this.onRemoveItem }>
                     <i className="zmdi zmdi-close icon-trash" />
                 </a>
+
             </div>
         );
     }

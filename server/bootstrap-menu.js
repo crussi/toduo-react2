@@ -4,7 +4,8 @@ var menudata = [
         name: "Inbox",
         icon: "inbox",
         color: "blue",
-        route: "/inbox"
+        route: "/inbox",
+        primarySort: 0
     },
     {
         _id: "I10ifHO0PEGrSxI_nNi-ag",
@@ -12,27 +13,31 @@ var menudata = [
         icon: "check-square",
         color: "green",
         route: "/next",
+        primarySort:1,
         children: [
             {
                 _id: "bFolGPm9ikShWzx76mq0GQ",
                 name: "Today",
                 icon: "calendar",
                 color: "green",
-                route: "/next/today"
+                route: "/next/today",
+                secondarySort:0,
             },
             {
                 _id: "_dy3uCTWF0qsWqELiinqFg",
                 name: "This Week",
                 icon: "calendar-note",
                 color: "green",
-                route: "/next/thisweek"
+                route: "/next/thisweek",
+                secondarySort:1,
             },
             {
                 _id: "w7mtxGN6Vkycw0pzuc7nHw",
                 name: "Soon",
                 icon: "calendar-check",
                 color: "green",
-                route: "/next/soon"
+                route: "/next/soon",
+                secondarySort:2,
             }
         ]
     },
@@ -41,14 +46,16 @@ var menudata = [
         name: "Focus",
         icon: "star",
         color: "red",
-        route: "/focus"
+        route: "/focus",
+        primarySort:2,
     },
     {
         _id: "qvyAi6BwzUefiROWuco38g",
         name: "Waiting for",
         icon: "account-box",
         color: "orange",
-        route: "/waitingfor"
+        route: "/waitingfor",
+        primarySort:3,
     },
     {
         _id: "ELm2BGNyHkCGsEzL5hp_JQ",
@@ -56,20 +63,23 @@ var menudata = [
         icon: "time",
         color: "cyan",
         route: "/scheduled",
+        primarySort:4,
         children: [
             {
                 _id: "kvIGBCUWZkuzp86JaHye4A",
                 name: "Calendar",
                 icon: "calendar",
                 color: "cyan",
-                route: "/scheduled/calendar"
+                route: "/scheduled/calendar",
+                secondarySort:0,
             },
             {
                 _id: "XueTfO9q9EuzgzsMcjI1oA",
                 name: "Reminders",
                 icon: "notifications",
                 color: "cyan",
-                route: "/scheduled/reminders"
+                route: "/scheduled/reminders",
+                secondarySort:1,
             }
         ]
     },
@@ -78,7 +88,8 @@ var menudata = [
         name: "Someday",
         icon: "pause",
         color: "purple",
-        route: "/someday"
+        route: "/someday",
+        primarySort:5,
     },
     {
         _id: "UeWFiTObrEGrl88O9woGtA",
@@ -86,27 +97,31 @@ var menudata = [
         icon: "assignment-o",
         color: "pink",
         route: "/project",
+        primarySort:6,
         children: [
             {
                 _id: "7EHOtAYARkG0c43qsDH5cQ",
                 name: "Project 1",
                 icon: "assignment",
                 color: "pink",
-                route: "/project/1"
+                route: "/project/7EHOtAYARkG0c43qsDH5cQ",
+                secondarySort:0,
             },
             {
                 _id: "0dCP51BWpEuPWDLiWVKQOQ",
                 name: "Project 2",
                 icon: "assignment",
                 color: "pink",
-                route: "/project/2"
+                route: "/project/0dCP51BWpEuPWDLiWVKQOQ",
+                secondarySort:1,
             },
             {
                 _id: "C_xUMSgdpEuS4Yt1XlO-XQ",
                 name: "Project 3",
                 icon: "assignment",
                 color: "pink",
-                route: "/project/3"
+                route: "/project/C_xUMSgdpEuS4Yt1XlO-XQ",
+                secondarySort:2,
             }
         ]
     },
@@ -115,7 +130,8 @@ var menudata = [
         name: "Review",
         icon: "local-cafe",
         color: "brown",
-        route: "/review"
+        route: "/review",
+        primarySort:7,
     },
     {
         _id: "ZABTfpmKh0KSbeN7QwKd3Q",
@@ -123,34 +139,39 @@ var menudata = [
         icon: "view-list-alt",
         color: "deep-purple",
         route: "/lists",
+        primarySort:8,
         children: [
             {
                 _id: "uP4uSZ3m9U_bDloeUpDcYw",
                 name: "Checklists",
                 icon: "view-list-alt",
                 color: "deep-purple",
-                route: "/lists/checklists"
+                route: "/lists/checklists",
+                secondarySort:0,
             },
             {
                 _id: "f4NkhuA_PkGyRi7yZIx0Qg",
                 name: "Reference",
                 icon: "book",
                 color: "deep-purple",
-                route: "/lists/reference"
+                route: "/lists/reference",
+                secondarySort:1,
             },
             {
                 _id: "3Jrjgc86U0m6afkizxB2SA",
                 name: "Done",
                 icon: "archive",
                 color: "deep-purple",
-                route: "/lists/done"
+                route: "/lists/done",
+                secondarySort:2,
             },
             {
                 _id: "pSzvcNe3T0q5fwcB2kDUtQ",
                 name: "Trash",
                 icon: "delete",
                 color: "deep-purple",
-                route: "/lists/trash"
+                route: "/lists/trash",
+                secondarySort:3,
             }
         ]
     },
@@ -160,27 +181,31 @@ var menudata = [
         icon: "pin",
         color: "teal",
         route: "/contexts",
+        primarySort:9,
         children: [
             {
                 _id: "RFhgTTkk0Ey3kg_xSpwD8w",
                 name: "Roles",
                 icon: "local-offer",
                 color: "teal",
-                route: "/contexts/roles"
+                route: "/contexts/roles",
+                secondarySort:0,
             },
             {
                 _id: "QXFQzrUDCUC_kfWP9zSPDg",
                 name: "Contexts ",
                 icon: "pin",
                 color: "teal",
-                route: "/contexts/contexts"
+                route: "/contexts/contexts",
+                secondarySort:1,
             },
             {
                 _id: "0w0JGgMyX0e0YWm583VwOQ",
                 name: "Flags ",
                 icon: "flag",
                 color: "teal",
-                route: "/contexts/flags"
+                route: "/contexts/flags",
+                secondarySort:2,
             },
             {
                 _id: "QcRkScJUWkesxZ3Wn-ZT_Q",
@@ -197,20 +222,23 @@ var menudata = [
         icon: "settings",
         color: "indigo",
         route: "/settings",
+        primarySort:10,
         children: [
             {
                 _id: "H-IuJIo9Vkif4JZRKqUd-Q",
                 name: "Profile ",
                 icon: "account-circle",
                 color: "indigo",
-                route: "/settings/profile"
+                route: "/settings/profile",
+                secondarySort:0,
             },
             {
                 _id: "XcWlwKAXUUS-R-GHN6Ugfg",
                 name: "General ",
                 icon: "settings",
                 color: "indigo",
-                route: "/settings/general"
+                route: "/settings/general",
+                secondarySort:1,
             }
         ]
     }

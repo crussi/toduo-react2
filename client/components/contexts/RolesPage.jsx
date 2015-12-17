@@ -18,12 +18,15 @@ RolesPage = React.createClass({
 
         return {
             subsReady: subsReady,
-            items: Roles.find({}, { sort: { sortorder: 1 } }),
+            items: Roles.find({}, { sort: { sortOrder: 1 } }),
             //currentUser: Meteor.user(),
             //disconnected: ShowConnectionIssues.get() && (! Meteor.status().connected)
             disconnected: false
         };
 
+    },
+    handleSort: function (/** Event */evt) {
+        /*..*/
     },
     onRemoveItem(itemId) {
         Meteor.call("/role/delete", itemId, (err, res) => {
@@ -58,8 +61,20 @@ RolesPage = React.createClass({
             }
         });
     },
+    onSortChange(list){
+        Meteor.call("/role/setSort", list, (err, res) => {
+            if (err) {
+                console.log('error');
+                console.dir(err);
+                return;
+            } else {
+                this.setState({updateTime: (new Date()).getTime()});
+            }
+        });
+    },
     render(){
-
+        //console.log('RolesPage render');
+        //console.dir(this.data.items);
         let contextProps = {
             backgroundColor: "#009688",
             icon: "local-offer",
@@ -70,11 +85,12 @@ RolesPage = React.createClass({
             data: this.data,
             sortable: true,
             onTextChange: this.onTextChange,
+            onSortChange: this.onSortChange,
             onRemoveItem: this.onRemoveItem,
             onAddItem: this.onAddItem
         }
 
-        return <ContextPage {...contextProps}/>
+        return <ContextPage2 {...contextProps}/>
 
     }
 });

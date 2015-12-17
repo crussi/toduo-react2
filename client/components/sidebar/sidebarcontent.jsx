@@ -50,8 +50,7 @@ SidebarContent = React.createClass({
             style = update(style, {$merge: this.props.style});
         }
         let sliderMenuProps = {
-            items: this.data.menudata,
-            routestate: this.props.routestate
+            items: this.data.menudata
         };
         let contentHeader = (
             <div style={styles.title}>Toduo</div>
