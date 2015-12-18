@@ -22,25 +22,25 @@ const styles = {
 };
 
 SidebarContent = React.createClass({
-    mixins: [ReactMeteorData],
-    getMeteorData() {
-        const subHandles = [
-            Meteor.subscribe("menudata")
-        ];
-
-        const subsReady = _.all(subHandles, function (handle) {
-            return handle.ready();
-        });
-
-        return {
-            subsReady: subsReady,
-            menudata: MenuData.find({}).fetch(),
-            //currentUser: Meteor.user(),
-            //disconnected: ShowConnectionIssues.get() && (! Meteor.status().connected)
-            disconnected: false
-        };
-
-    },
+    //mixins: [ReactMeteorData],
+    //getMeteorData() {
+    //    const subHandles = [
+    //        Meteor.subscribe("menudata")
+    //    ];
+    //
+    //    const subsReady = _.all(subHandles, function (handle) {
+    //        return handle.ready();
+    //    });
+    //
+    //    return {
+    //        subsReady: subsReady,
+    //        menudata: MenuData.find({}).fetch(),
+    //        //currentUser: Meteor.user(),
+    //        //disconnected: ShowConnectionIssues.get() && (! Meteor.status().connected)
+    //        disconnected: false
+    //    };
+    //
+    //},
 
     render() {
         //console.log('sidebarcontent render');
@@ -49,15 +49,15 @@ SidebarContent = React.createClass({
         if (this.props.style) {
             style = update(style, {$merge: this.props.style});
         }
-        let sliderMenuProps = {
-            items: this.data.menudata
-        };
+        //let sliderMenuProps = {
+        //    items: this.data.menudata
+        //};
         let contentHeader = (
             <div style={styles.title}>Toduo</div>
         );
         return (
             <TitlePanel title={contentHeader} style={style}>
-                <SliderMenu {...sliderMenuProps}/>
+                <SliderMenu/>
             </TitlePanel>);
     },
 });

@@ -1,0 +1,11 @@
+/*Note: setting* html and body to height: 100% impacted scrolling of sidenav*/
+
+html {
+    -webkit-tap-highlight-color: transparent;
+    /*height:100%;*/
+}
+
+body {
+    font-family: sans-serif;
+    /*height:100%;*/
+}

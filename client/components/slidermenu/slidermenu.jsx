@@ -136,19 +136,22 @@ SliderMenu = React.createClass({
             navicon = <div className="nav-arrow"></div>;
             navtitle = <span className="nav-title">Home</span>;
         }
+        let comp = <p>Loading ...</p>;
+        if (this.data.subsReady) {
+            comp = <SliderTransition depth={path.length} selectedId={selectedId} className="items-container">
+                {items.map(function(item, index) {
+                    return <SliderMenuItem item={item} index={index} selectedId={selectedId} key={item._id}
+                                           callbackNavDown={this.navDown}></SliderMenuItem>
+                    }.bind(this))}
+            </SliderTransition>
+        }
 
         return <div className="browser browser-panel">
-            <div className="menu-navbar">
-                {navicon}
-                {navtitle}
-            </div>
-
-            <SliderTransition depth={path.length} selectedId={selectedId} className="items-container">
-                {items.map(function(item, index) {
-                    return <SliderMenuItem item={item} index={index} selectedId={selectedId} key={item._id} callbackNavDown={this.navDown}></SliderMenuItem>
-                }.bind(this))}
-            </SliderTransition>
-
-        </div>;
+                <div className="menu-navbar">
+                    {navicon}
+                    {navtitle}
+                </div>
+                {comp}
+            </div>;
     }
 });

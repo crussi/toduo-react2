@@ -15,6 +15,16 @@ SortableList = React.createClass({
             items: nextProps.list
         });
     },
+    componentDidMount(){
+        //let $el = $(ReactDOM.findDOMNode(this));
+        ////$el.mCustomScrollbar();
+        //console.log('jQuery');
+        //console.dir($el);
+        ////console.dir($el.mCustomScrollbar);
+        //console.dir(this.refs.slist);
+        //$el.mCustomScrollbar({alwaysShowScrollbar:2});
+
+    },
     handleSort: function (/** Event */evt) {
         let items = this.state.items.slice();
         //console.dir(items);
@@ -71,7 +81,7 @@ SortableList = React.createClass({
         //    }</ul>
 
 
-        return <div className="sortable-list">{
+        return <div className="sortable-list" ref="slist">{
             this.state.items.map((item) => {
                 let itemProps = {
                     "key": item._id,

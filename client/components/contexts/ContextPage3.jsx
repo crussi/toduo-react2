@@ -55,7 +55,7 @@ ContextPage3 = React.createClass({
                 };
 
                 return [
-                    <ContextItem2 {...itemProps}/>
+                    <ContextItem {...itemProps}/>
 
                 ]
             });
@@ -80,11 +80,16 @@ ContextPage3 = React.createClass({
         //    minHeight:this.state.height
         //};
         //console.dir(sectionStyle);
+        //<Scrollbars style={{ width: 1000, height: 300 }}>
+        //
+        //</Scrollbars>
         let list =  <div className="row">
             <div className="list-items col-xs-4">
+
                 <List>
                     {comp}
                 </List>
+
             </div>
         </div>;
 
