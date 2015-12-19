@@ -18,15 +18,25 @@ ContextItem2 = React.createClass({
     },
     onDoubleClick(e){
         if (e.target) {
-            let val = e.target.value;
-            e.target.value = "";
-            e.target.value = val;
+            //let val = e.target.value;
+            //e.target.value = "";
+            //e.target.value = val;
+            e.target.setSelectionRange(0, e.target.value.length);
         }
         this.setState({
             focused: true,
             curText: this.props.item.Name
         });
         this.props.onInitiateEdit();
+    },
+    onMouseOut(e) {
+        //console.log("onMouseOut");
+        //console.dir(e);
+        if (this.state.focused) {
+            this.setState({ focused: false });
+            this.props.onStopEdit();
+            this.refs.inputText.setSelectionRange(0,0);
+        }
     },
     onFocus() {
         console.log('onFocus');
@@ -37,7 +47,9 @@ ContextItem2 = React.createClass({
         this.props.onInitiateEdit();
     },
 
-    onBlur() {
+    onBlur(e) {
+        console.log("onBlur");
+        //console.dir(e);
         this.setState({ focused: false });
         this.props.onStopEdit();
     },
@@ -82,8 +94,8 @@ ContextItem2 = React.createClass({
             //        <i className="zmdi zmdi-close icon-trash" />
             //    </a>
             //</div>
-            <div className={ className }>
-
+            <div className={ className } onMouseOut={ this.onMouseOut }>
+                <a className="item-icon  icon-move"><i className="zmdi zmdi-apps" /></a>
                 <input
                     type="text"
                     value={this.state.focused ? this.state.curText : this.props.item.Name}
@@ -92,10 +104,10 @@ ContextItem2 = React.createClass({
                     onBlur={ this.onBlur }
                     onChange={ this.onTextChange }
                     readOnly={!this.state.focused}
+                    ref="inputText"
                 />
-                <a className="delete-item"
-                   onClick={ this.onRemoveItem }>
-                    <i className="zmdi zmdi-close icon-trash" />
+                <a className="item-icon icon-close" onClick={ this.onRemoveItem }>
+                    <i className="zmdi zmdi-close" />
                 </a>
 
             </div>

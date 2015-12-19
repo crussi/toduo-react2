@@ -180,7 +180,7 @@ var menudata = [
         name: "Contexts",
         icon: "pin",
         color: "teal",
-        route: "/contexts",
+        route: "/contexts/roles",
         primarySort:9,
         children: [
             {
@@ -247,7 +247,7 @@ var menudata = [
 // if the menu data (database) is empty on server start, create some sample data.
 Meteor.startup(function () {
     //Prep test menu items
-    //MenuData.remove({});
+    MenuData.remove({});
     if (MenuData.find().count() === 0) {
         console.log('menu data is empty ... reloading');
         _.each(menudata, function (item) {

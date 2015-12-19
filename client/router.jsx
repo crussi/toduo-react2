@@ -65,7 +65,8 @@ listsRoutes.route('/trash', {action: function(params) { renderc(TrashPage) }} );
 listsRoutes.route('/trash/:id', {action: function(params) { renderc(TrashPage, { id: params.id }) }} );
 
 var contextsRoutes = routeGroup('/contexts', 'contexts');
-contextsRoutes.route('/', {action: renderf(Container, { name: "contexts" }) } );
+//contextsRoutes.route('/', {action: renderf(Container, { name: "contexts" }) } );
+contextsRoutes.route('/', {action: renderf(RolesPage) } );
 contextsRoutes.route('/roles', {action: renderf(RolesPage) } );
 contextsRoutes.route('/contexts', {action: renderf(ContextsPage) } );
 contextsRoutes.route('/flags', {action: renderf(FlagsPage) } );

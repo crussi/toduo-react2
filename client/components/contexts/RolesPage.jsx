@@ -40,7 +40,8 @@ RolesPage = React.createClass({
         });
     },
     onAddItem() {
-        Meteor.call("/role/addNew", {Name:"New role"}, (err, res) => {
+        let role = new Role({Name:"New role", sortOrder:this.data.items.length});
+        Meteor.call("/role/addNew", role, (err, res) => {
             if (err) {
                 console.log('error');
                 console.dir(err);

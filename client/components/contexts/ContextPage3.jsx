@@ -104,27 +104,36 @@ ContextPage3 = React.createClass({
             height: this.state.height
         };
 
-        return <div className="list-page full-height" ref="container">
-            <div className="row full-height">
-                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 full-height">
-                    <div className="row full-height">
-                        <div className="col-xs-offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10 full-height" ref="tasks">
-                            <div className="list-card full-height">
+        //return <div className="list-page full-height" ref="container">
+        //    <div className="row full-height">
+        //        <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 full-height">
+        //            <div className="row list-container">
+        //                <div className="col-xs-offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10 full-height">
+        //                    <div className="list-card full-height">
+        //                        <ContextCard {...cardProps} ref="card"/>
+        //                        <div className="context-add-btn">
+        //                            <FloatingActionButton onClick={this.onAddItem}>
+        //                                <FontIcon className="zmdi zmdi-plus" />
+        //                            </FloatingActionButton>
+        //                        </div>
+        //
+        //                    </div>
+        //                </div>
+        //            </div>
+        //        </div>
+        //
+        //    </div>
+        //</div>
+
+        return <div name="list-card" className="list-card col-xs-10 col-sm-10 col-md-10 col-lg-10">
                                 <ContextCard {...cardProps} ref="card"/>
-                                <div className="context-add-btn">
+                                <div name="add-btn" className="context-add-btn">
                                     <FloatingActionButton onClick={this.onAddItem}>
                                         <FontIcon className="zmdi zmdi-plus" />
                                     </FloatingActionButton>
                                 </div>
 
                             </div>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
-
-
-        </div>
     }
 });

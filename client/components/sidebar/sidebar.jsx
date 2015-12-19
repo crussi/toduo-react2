@@ -25,9 +25,9 @@ const styles = {
         WebkitTransform: 'translateX(-100%)',
         willChange: 'transform',
         backgroundColor: '#f2f2f2',
-        overflowY: 'hidden',
-        top: '0',
-        postion: 'fixed'
+        overflowY: 'hidden'
+        //top: '0',
+        //postion: 'fixed'
     },
     content: {
         position: 'absolute',
@@ -298,12 +298,12 @@ Sidebar = class Sidebar extends React.Component {
 
         return (
             <div {...rootProps}>
-                <div style={sidebarStyle} ref='sidebar'>
+                <div name="sidebar" style={sidebarStyle} ref='sidebar'>
                     {this.props.sidebar}
                 </div>
-                <div style={overlayStyle}
+                <div name="overlay" style={overlayStyle}
                      onClick={this.overlayClicked} onTouchTap={this.overlayClicked} />
-                <div style={contentStyle}>
+                <div name="content" style={contentStyle}>
                     {dragHandle}
                     {this.props.children}
                 </div>

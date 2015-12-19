@@ -2,7 +2,6 @@
 
 SortableList = React.createClass({
     mixins: [SortableMixin],
-
     //Note: state HAS to be contain items
     getInitialState: function() {
         return {
@@ -14,16 +13,6 @@ SortableList = React.createClass({
         this.setState({
             items: nextProps.list
         });
-    },
-    componentDidMount(){
-        //let $el = $(ReactDOM.findDOMNode(this));
-        ////$el.mCustomScrollbar();
-        //console.log('jQuery');
-        //console.dir($el);
-        ////console.dir($el.mCustomScrollbar);
-        //console.dir(this.refs.slist);
-        //$el.mCustomScrollbar({alwaysShowScrollbar:2});
-
     },
     handleSort: function (/** Event */evt) {
         let items = this.state.items.slice();
@@ -43,6 +32,7 @@ SortableList = React.createClass({
         this.setState({
             taskBeingEditedId: taskId
         });
+
     },
     onRemoveItem(itemId) {
         console.log('SortableList onRemoveItem itemId: ' + itemId);
@@ -81,7 +71,7 @@ SortableList = React.createClass({
         //    }</ul>
 
 
-        return <div className="sortable-list" ref="slist">{
+        return <div className="sortable-list">{
             this.state.items.map((item) => {
                 let itemProps = {
                     "key": item._id,

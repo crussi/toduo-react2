@@ -29,7 +29,7 @@
     box-sizing: border-box;
     color: #333333;
     outline: none;
-    margin-left: 20px;
+    /*margin-left: 20px;*/
 }
 .list-items .list-item input[type="text"]:focus {
     cursor: text;
@@ -37,16 +37,38 @@
 .list-items .list-item:hover {
     background: none rgba(0,0,0,0.089);
 }
+.list-items .list-item.editing {
+    /*background: none rgba(0,0,0,0.089);*/
+}
 .list-page {
+    /*WOW did this just fix scroll issue???*/
+    /*position: fixed;*/
     margin-right: 120px;
     /*margin-top: 15px;*/
     height: 100%;
+    /*width:100%;*/
     /*width: 100%;*/
     background-color: #fff;
+}
+
+.list-pageX {
+    position: absolute;
+    top: 54px;
+    left: 0;
+    right: 120px;
+    bottom: 0;
+    overflow: auto;
+    background-color: #fff;
+}
+.list-container {
+
+    height: 100%;
 }
 .list-card {
     margin-top: 20px;
     position: relative;
+    /*testing auto height*/
+    height: auto;
 }
 .list-items .list-item {
     /*font-size: 14px;*/
@@ -75,42 +97,60 @@
     /*box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);*/
 
 }
-.list-items .list-item .delete-item {
-    display: none;
+.list-items .list-item .item-icon {
+    /*display: none;*/
+    visibility: hidden;
+    display: inline-block;
 }
-
-/*.list-items .list-item.editing .delete-item {*/
+.list-items .list-item input[type="text"]{
+    text-align: left;
+}
+/*.list-items .list-item.editing .item-icon {*/
 .list-items .list-item.editing input[type="text"]{
     background-color: #fff;
     height: 25px;
     margin-top: 8px;
 }
-.list-items .list-item:hover .delete-item {
-    display: inline-block;
+.list-items .list-item:hover .item-icon {
+    /*display: inline-block;*/
+    visibility: visible;
 }
 
-.list-items .list-item .delete-item {
+.list-items .list-item .item-icon.icon-close {
     -webkit-box-flex: 0;
     -moz-box-flex: 0;
     -webkit-flex: 0 0 3rem;
     -ms-flex: 0 0 3rem;
     flex: 0 0 3rem;
 }
-.list-items .list-item .delete-item {
+.list-items .list-item .item-icon.icon-move {
+    /*-webkit-box-flex: 0;*/
+    /*-moz-box-flex: 0;*/
+    /*-webkit-flex: 0 0 3rem;*/
+    /*-ms-flex: 0 0 3rem;*/
+    /*flex: 0 0 3rem;*/
+    padding-left: 15px;
+    cursor: move;
+}
+.list-items .list-item .item-icon.icon-move .zmdi {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.list-items .list-item .item-icon {
     color: #aaa;
     line-height: 3rem;
     text-align: center;
 }
 
-.list-items .list-item .delete-item:hover {
+.list-items .list-item .item-icon:hover .zmdi-close {
     color: #ff4081;
 }
 
-.list-items .list-item .delete-item:active {
+.list-items .list-item .item-icon:active .zmdi-close {
     color: #555555;
 }
 
-.list-items .list-item .delete-item .icon-trash {
+.list-items .list-item .item-icon .zmdi {
     font-size: 1.1em;
 }
 .list-narrow {
@@ -132,7 +172,7 @@ button, input, select, textarea {
 }
 .context-add-btn {
     position: absolute;
-    bottom: 100px;
+    bottom: 40px;
     right: 40px;
 }
 .context-icon {
@@ -148,14 +188,33 @@ button, input, select, textarea {
 .sortable-list{
     overflow-y: scroll;
 }
+.titlepanel-root {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+    height: 100%;
+    width: 100%;
+}
+.titlepanel-header {
+    z-index: 1;
+    background-color: #4285f4;
+    box-shadow: 0 0 4px rgba(0,0,0,.14),-4px 4px 8px rgba(0,0,0,.28);
+    color: white;
+    padding: 10px;
+    font-size: 1.5em;
+    top: 0;
+    position: fixed;
+    width: 100%;
+}
 .titlepanel-container {
+    /*margin-top causes scrolling ...*/
     margin-top: 54px;
     width: 100%;
     padding: 8px;
-    height: 100vh;
-    height: -webkit-calc(100vh - 54px);
-    height: -moz-calc(100vh - 54px);
-    height: calc(100vh - 54px);
+    height: 100%;
+    /*height: 100vh;*/
+    /*height: -webkit-calc(100vh - 54px);*/
+    /*height: -moz-calc(100vh - 54px);*/
+    /*height: calc(100vh - 54px);*/
 }
 .multi-column {
     -webkit-column-count: 2; /* Chrome, Safari, Opera */
