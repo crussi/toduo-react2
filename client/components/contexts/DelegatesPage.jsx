@@ -26,7 +26,7 @@ DelegatesPage = React.createClass({
 
     },
     onRemoveItem(itemId) {
-        Meteor.call("/contact/delete", itemId, (err, res) => {
+        Meteor.call("/delegate/delete", itemId, (err, res) => {
             if (err) {
                 console.log('error');
                 console.dir(err);
@@ -38,7 +38,10 @@ DelegatesPage = React.createClass({
     },
     onAddItem() {
         console.log('delegates onAddItem');
-        Meteor.call("/contact/addNew", {Name:"New delegate"}, (err, res) => {
+        //TODO: this is for test purposes only
+        let contact = new Contact({_id: "Lzlnq6kkhE_JfxBUNAtMDg", Name:"New delegate"});
+        console.log("after new Contact");
+        Meteor.call("/delegate/addNew", contact, (err, res) => {
             if (err) {
                 console.log('error');
                 console.dir(err);
@@ -50,7 +53,7 @@ DelegatesPage = React.createClass({
         });
     },
     onTextChange(itemId, newText) {
-        Meteor.call("/contact/setName", {_id: itemId, Name:newText}, (err, res) => {
+        Meteor.call("/delegate/setName", {_id: itemId, Name:newText}, (err, res) => {
             if (err) {
                 console.log('error');
                 console.dir(err);

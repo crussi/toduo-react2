@@ -180,7 +180,7 @@ var menudata = [
         name: "Contexts",
         icon: "pin",
         color: "teal",
-        route: "/contexts/roles",
+        route: "/contexts",
         primarySort:9,
         children: [
             {

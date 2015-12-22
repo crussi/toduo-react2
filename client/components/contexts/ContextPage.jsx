@@ -19,9 +19,9 @@ ContextPage = React.createClass({
             taskBeingEditedId: taskId
         });
     },
-    onRemoveItem(itemId) {
-        //console.log('ContextPage onRemoveItem itemId: ' + itemId);
-        this.props.onRemoveItem(itemId);
+    onRemoveItem(itemId,list) {
+        //console.log('ContextPage onRemoveItem itemId: ' + itemId + ' list: ' + list);
+        this.props.onRemoveItem(itemId,list);
     },
     onAddItem() {
         //console.log('ContextPage onAddItem');
@@ -32,7 +32,7 @@ ContextPage = React.createClass({
         this.props.onTextChange(itemId, newText);
     },
     onSortChange(list){
-        console.log('ConextPage2 updateRoles');
+        //console.log('ConextPage2 updateRoles');
         this.props.onSortChange(list);
     },
     render(){
@@ -59,7 +59,7 @@ ContextPage = React.createClass({
                 "onRemoveItem": this.onRemoveItem,
                 "onTextChange": this.onTextChange,
                 "onSortChange": this.onSortChange,
-                "sortDisabled": true
+                "sortable": this.props.sortable
             }
             comp = <SortableList {...listProps}/>
         }

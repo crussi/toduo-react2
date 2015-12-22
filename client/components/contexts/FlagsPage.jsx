@@ -76,6 +76,6 @@ FlagsPage = React.createClass({
             onAddItem: this.onAddItem
         }
 
-        return <ContextPage3 {...contextProps}/>
+        return <ContextPage {...contextProps}/>
     }
 });

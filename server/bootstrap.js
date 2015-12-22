@@ -128,6 +128,15 @@ Meteor.startup(function () {
         Contacts.insert({_id: 'mTGY8FxbYEWDLoySaUXpRg', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w' , Name:'Felix'});
     }
 
+    Delegates.remove({});
+    if (Delegates.find().count() === 0) {
+        Delegates.insert({_id: "uMMKu050BUCl2otwEVSKww", ContactId: 'mUW6o-bq-ECBKMDGrVFMyA', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w', Name:'Adam'});
+        Delegates.insert({_id: "3i8m19jew0_iuHjBl_wX2w", ContactId: 'VKk7f5-Q2k2P0ENPACo2aA', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w', Name:'Butterfly'});
+        Delegates.insert({_id: "ZnUxFArH702RfHwhT91IMQ", ContactId: 'h5ae_69FnU__A9EKJzP0uA', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w', Name:'Michele'});
+        Delegates.insert({_id: "PYt_HDSeKEG-6nyA_Qx-EQ", ContactId: 'Xt9dBGPO9Em0JABFN0E7tw', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w' , Name:'Marianne'});
+        Delegates.insert({_id: "lAPr-2qDOUSVY4XzXQrXeA", ContactId: '439xlfFRskqc32BMBjujIw', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w' , Name:'Bright Rite Carpet Cleaner'});
+        Delegates.insert({_id: "Fscw_rU020SvczvPMm6bIw", ContactId: '1cI9Xb8g7UGf0mVVIs-BJw', 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w' , Name:'Jose Gardener'});
+    }
     Projects.remove({});
     if (Projects.find().count() === 0) {
         Projects.insert({_id: '7EHOtAYARkG0c43qsDH5cQ', Title: "Project 1", 'AccountId': 'jADe-P9Nzke_Tkio1IVnRw', 'UserId': 'g94HOmCDVkiKEl0NyuBc8w',

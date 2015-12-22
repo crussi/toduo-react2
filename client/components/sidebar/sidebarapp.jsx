@@ -161,8 +161,12 @@ SidebarApp = React.createClass({
         };
 
         let titleProps = {
-            title: contentHeader
+            title: contentHeader,
             //viewportHeight: this.state.viewportHeight
+            headerBgColor:'#4285f4',
+            containerBgColor: 'transparent',
+            fontColor: "#ffffff",
+            boxShadow: '0 0 4px rgba(0,0,0,.14),-4px 4px 8px rgba(0,0,0,.28)'
         };
 
         return (

@@ -16,6 +16,7 @@ Meteor.publish('routestatedata', function() {
 });
 
 Meteor.publish('project', function(id) {
+    check(id,String);
     return Projects.find({_id:id});
 });
 
@@ -36,6 +37,7 @@ Meteor.publish('delegates', function() {
 });
 
 Meteor.publish('delegate', function(id) {
+    check(id,String);
     return Delegate.findOne({_id:id});
 });
 
@@ -44,10 +46,12 @@ Meteor.publish('contacts', function() {
 });
 
 Meteor.publish('contact', function(id) {
+    check(id,String);
     return Contact.findOne({_id:id});
 });
 
 Meteor.publish('task', function(id) {
+    check(id,String);
     return Tasks.findOne({_id:id});
 });
 

@@ -150,10 +150,10 @@ ProjectForm = React.createClass({
         minDate.setFullYear(minDate.getFullYear() - 1);
         maxDate.setDate(today.getDate());
         maxDate.setFullYear(minDate.getFullYear() + 11);
-        let childProps = {
-            callback: this.handleClick,
-            hasPrev: true
-        };
+        //let childProps = {
+        //    callback: this.handleClick,
+        //    hasPrev: true
+        //};
         return (
             <div style={styles.container}>
                     <div className="row">

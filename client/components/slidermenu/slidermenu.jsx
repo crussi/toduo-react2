@@ -71,7 +71,7 @@ SliderMenu = React.createClass({
         this.setState({selected: selected});
     },
     getRouteState(key){
-        console.dir(this.data.routestates);
+        //console.dir(this.data.routestates);
         var result = this.data.routestates.filter(function(data) {
             return data.key == key;
         });

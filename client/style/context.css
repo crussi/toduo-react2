@@ -29,8 +29,12 @@
     box-sizing: border-box;
     color: #333333;
     outline: none;
-    /*margin-left: 20px;*/
+    margin-left: 20px;
 }
+.list-item.sortable input[type="text"] {
+    margin-left: 0px;
+}
+
 .list-items .list-item input[type="text"]:focus {
     cursor: text;
 }
@@ -188,33 +192,34 @@ button, input, select, textarea {
 .sortable-list{
     overflow-y: scroll;
 }
-.titlepanel-root {
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    font-weight: 300;
-    height: 100%;
-    width: 100%;
-}
-.titlepanel-header {
-    z-index: 1;
-    background-color: #4285f4;
-    box-shadow: 0 0 4px rgba(0,0,0,.14),-4px 4px 8px rgba(0,0,0,.28);
-    color: white;
-    padding: 10px;
-    font-size: 1.5em;
-    top: 0;
-    position: fixed;
-    width: 100%;
-}
+/*.titlepanel-root {*/
+    /*font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;*/
+    /*font-weight: 300;*/
+    /*height: 100%;*/
+    /*width: 100%;*/
+/*}*/
+/*.titlepanel-header {*/
+    /*z-index: 1;*/
+    /*background-color: #4285f4;*/
+    /*box-shadow: 0 0 4px rgba(0,0,0,.14),-4px 4px 8px rgba(0,0,0,.28);*/
+    /*color: white;*/
+    /*padding: 10px;*/
+    /*font-size: 1.5em;*/
+    /*top: 0;*/
+    /*position: fixed;*/
+    /*width: 100%;*/
+/*}*/
 .titlepanel-container {
     /*margin-top causes scrolling ...*/
     margin-top: 54px;
     width: 100%;
+    /*padding not woring for sign in single page*/
     padding: 8px;
     height: 100%;
-    /*height: 100vh;*/
-    /*height: -webkit-calc(100vh - 54px);*/
-    /*height: -moz-calc(100vh - 54px);*/
-    /*height: calc(100vh - 54px);*/
+    height: 100vh;
+    height: -webkit-calc(100vh - 54px);
+    height: -moz-calc(100vh - 54px);
+    height: calc(100vh - 54px);
 }
 .multi-column {
     -webkit-column-count: 2; /* Chrome, Safari, Opera */

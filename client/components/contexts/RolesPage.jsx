@@ -7,7 +7,6 @@ RolesPage = React.createClass({
         };
     },
     getMeteorData() {
-
         const subHandles = [
             Meteor.subscribe("roles")
         ];
@@ -25,11 +24,9 @@ RolesPage = React.createClass({
         };
 
     },
-    handleSort: function (/** Event */evt) {
-        /*..*/
-    },
-    onRemoveItem(itemId) {
-        Meteor.call("/role/delete", itemId, (err, res) => {
+    onRemoveItem(itemId,list) {
+        //console.log("rolespage itemId: " + itemId + " list: " + list);
+        Meteor.call("/role/delete", {_id:itemId,list:list}, (err, res) => {
             if (err) {
                 console.log('error');
                 console.dir(err);
@@ -91,7 +88,7 @@ RolesPage = React.createClass({
             onAddItem: this.onAddItem
         }
 
-        return <ContextPage3 {...contextProps}/>
+        return <ContextPage {...contextProps}/>
 
     }
 });

@@ -1,11 +1,16 @@
-Ant = React.createClass({
-    render(){
-        return <div>
-            <p>I am an ant, I keep busy!</p>
-        </div>
-    }
-});
 
+
+function IsAuthenticated () {
+    console.log("checking IsAuthenticated");
+    //var route;
+    //if (!(Meteor.loggingIn() || Meteor.userId())) {
+    //    route = FlowRouter.current();
+    //    if (route.route.name !== 'login') {
+    //        Session.set('redirectAfterLogin', route.path);
+    //    }
+    //    return FlowRouter.go("/signin");
+    //}
+}
 function renderf(Comp, props = {}, Layout = SidebarApp) {
 
     return function action(params, queryParams) {
@@ -21,9 +26,11 @@ function renderc(Comp, props = {}, Layout = SidebarApp) {
 function routeGroup(routePrefix, name) {
     return FlowRouter.group({prefix: routePrefix, name: name});
 }
+//Global trigger
+FlowRouter.triggers.enter([IsAuthenticated]);
 
 FlowRouter.route('/', {action: renderf(Container, { name: "world" }) } );
-FlowRouter.route('/', {action: renderf(Ant, { name: "world" }) } );
+FlowRouter.route('/signin', {action: renderf(AuthPage,{},UnauthApp)} );
 
 FlowRouter.route('/inbox', {action: renderf(InboxList, { nextstep: nextstep }) } );
 
@@ -65,8 +72,8 @@ listsRoutes.route('/trash', {action: function(params) { renderc(TrashPage) }} );
 listsRoutes.route('/trash/:id', {action: function(params) { renderc(TrashPage, { id: params.id }) }} );
 
 var contextsRoutes = routeGroup('/contexts', 'contexts');
-//contextsRoutes.route('/', {action: renderf(Container, { name: "contexts" }) } );
-contextsRoutes.route('/', {action: renderf(RolesPage) } );
+contextsRoutes.route('/', {action: renderf(Container, { name: "contexts" }) } );
+//contextsRoutes.route('/', {action: renderf(RolesPage) } );
 contextsRoutes.route('/roles', {action: renderf(RolesPage) } );
 contextsRoutes.route('/contexts', {action: renderf(ContextsPage) } );
 contextsRoutes.route('/flags', {action: renderf(FlagsPage) } );
