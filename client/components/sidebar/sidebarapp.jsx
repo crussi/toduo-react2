@@ -166,7 +166,8 @@ SidebarApp = React.createClass({
             headerBgColor:'#4285f4',
             containerBgColor: 'transparent',
             fontColor: "#ffffff",
-            boxShadow: '0 0 4px rgba(0,0,0,.14),-4px 4px 8px rgba(0,0,0,.28)'
+            boxShadow: '0 0 4px rgba(0,0,0,.14),-4px 4px 8px rgba(0,0,0,.28)',
+            showSignIn: false
         };
 
         return (

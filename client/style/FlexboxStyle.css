@@ -89,3 +89,12 @@
 .align-top {
     align-self: flex-start;
 }
+.align-stretch {
+    align-self: stretch;
+}
+
+/*overrides to FlexboxGrid*/
+#unauth.row {
+    margin-right: 0.0rem;
+    margin-left: 0.0rem;
+}

@@ -96,7 +96,9 @@ ContextPage = React.createClass({
             mediaSubtitle: this.props.mediaSubtitle,
             cardTitle: this.props.cardTitle,
             cardText: this.props.cardText,
-            height: this.state.height
+            height: this.state.height,
+            imgHeight: this.props.imgHeight || "150px",
+            iconClass: this.props.iconClass
         };
 
         //return <div className="list-page full-height" ref="container">

@@ -73,7 +73,10 @@ FlagsPage = React.createClass({
             sortable: false,
             onTextChange: this.onTextChange,
             onRemoveItem: this.onRemoveItem,
-            onAddItem: this.onAddItem
+            onAddItem: this.onAddItem,
+            height: '100%',
+            imgHeight: "150px",
+            iconClass: "context-icon"
         }
 
         return <ContextPage {...contextProps}/>

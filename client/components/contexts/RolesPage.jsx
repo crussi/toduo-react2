@@ -85,7 +85,10 @@ RolesPage = React.createClass({
             onTextChange: this.onTextChange,
             onSortChange: this.onSortChange,
             onRemoveItem: this.onRemoveItem,
-            onAddItem: this.onAddItem
+            onAddItem: this.onAddItem,
+            height: '100%',
+            imgHeight: "150px",
+            iconClass: "context-icon"
         }
 
         return <ContextPage {...contextProps}/>

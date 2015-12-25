@@ -8,7 +8,7 @@ function IsAuthenticated () {
     //    if (route.route.name !== 'login') {
     //        Session.set('redirectAfterLogin', route.path);
     //    }
-    //    return FlowRouter.go("/signin");
+    //    return FlowRouter.go("/toduo");
     //}
 }
 function renderf(Comp, props = {}, Layout = SidebarApp) {
@@ -30,7 +30,9 @@ function routeGroup(routePrefix, name) {
 FlowRouter.triggers.enter([IsAuthenticated]);
 
 FlowRouter.route('/', {action: renderf(Container, { name: "world" }) } );
+FlowRouter.route('/toduo', {action: renderf(MktgPage,{},UnauthApp)} );
 FlowRouter.route('/signin', {action: renderf(AuthPage,{},UnauthApp)} );
+FlowRouter.route('/signup', {action: renderf(AuthPage,{},UnauthApp)} );
 
 FlowRouter.route('/inbox', {action: renderf(InboxList, { nextstep: nextstep }) } );
 

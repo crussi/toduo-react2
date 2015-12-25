@@ -73,6 +73,7 @@
     position: relative;
     /*testing auto height*/
     height: auto;
+    text-align: left;
 }
 .list-items .list-item {
     /*font-size: 14px;*/
@@ -185,6 +186,29 @@ button, input, select, textarea {
     right: 40px;
     font-size: 150px;
     color: rgba(250,250,250,0.50);
+}
+.auth-icon {
+    position: absolute;
+    top: -90px;
+    right: 30px;
+    font-size: 150px;
+    color: rgba(250,250,250,0.50);
+}
+.auth-avatar {
+    /*display:inline-block;*/
+    margin-right: 10px;
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    background: #ddd;
+    -moz-border-radius: 40px;
+    -webkit-border-radius: 40px;
+    border-radius: 40px;
+
+}
+.auth-avatar img {
+    margin-top: 4px;
+    margin-left: 4px;
 }
 .full-height {
     height: 100%;

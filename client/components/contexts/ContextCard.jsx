@@ -33,8 +33,8 @@ ContextCard = React.createClass({
     //},
     render(){
         let cardStyle = {
-          //height: this.props.height
-            height: '100%',
+          height: this.props.height,
+            //height: '100%',
             //height: '90%'
           //  flex:2,
           //  display: 'flex'
@@ -53,20 +53,25 @@ ContextCard = React.createClass({
         };
         let mediaStyle = {
             backgroundColor: this.props.backgroundColor,
+            //boxShadow: '0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24)',
             position: 'relative'
         };
         let overlayContentStyle = {
             background: 'transparent'
         };
-        let iconClass = "zmdi zmdi-" + this.props.icon + " context-icon";
+        let iconClass = "zmdi zmdi-" + this.props.icon + " " + this.props.iconClass;
         let mediaTitle = <div className="context-title"><CardTitle title={this.props.mediaTitle} subtitle={this.props.mediaSubtitle}
                                     titleStyle={titleStyle} subtitleStyle={subtitleStyle}/>
         <i className={iconClass}/>
         </div>
-
+        //if (this.props.displayCardTitle) {
+        //    <CardTitle title={this.props.cardTitle} subtitle="Subtitle"/>
+        //}
+        let imgHeight = this.props.imgHeight;
+        console.log("imgHeight: " + imgHeight);
         return <Card style={cardStyle}>
             <CardMedia mediaStyle={mediaStyle} overlayContentStyle={overlayContentStyle} overlay={mediaTitle}>
-                <img src="/images/Transparent.gif" height="150px" ref="something"/>
+                <img src="/images/Transparent.gif" height={imgHeight} ref="something"/>
             </CardMedia>
 
             <CardText>
