@@ -4,7 +4,7 @@ TitlePanelInput = React.createClass({
     //},
     onSubmit(input){
         if (!input) return;
-        console.info("Parent onSubmit input: " + input);
+        //console.info("Parent onSubmit input: " + input);
         Meteor.call("/inbox/addNew", input, (err, res) => {
             console.log('meteor.call inbox addNew');
             if (err) {

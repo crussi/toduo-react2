@@ -188,8 +188,8 @@ SidebarApp = React.createClass({
             },
             menuButtonClick: this.menuButtonClick
         };
-console.log('hello from sidebarapp ...');
-console.dir(titleProps);
+//console.log('hello from sidebarapp ...');
+//console.dir(titleProps);
         return (
             <Sidebar {...sidebarProps}>
                 <TitlePanel {...titleProps} >

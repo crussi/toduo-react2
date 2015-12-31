@@ -147,11 +147,11 @@ TitlePanel = React.createClass({
             btns: {
                 marginLeft: 'auto',
                 marginRight: '30px'
-            },
-            icon: {
-                fontSize: '44px',
-                color: 'rgba(250,250,250,0.75)'
             }
+            //icon: {
+            //    fontSize: '44px',
+            //    color: 'rgba(250,250,250,0.75)'
+            //}
         };
         let rootStyle = this.props.style ? update(styles.root, {$merge: this.props.style}) : styles.root;
         //TODO: trying to convert to using 100vh
@@ -162,44 +162,8 @@ TitlePanel = React.createClass({
 
         let btncomp = (<div></div>);
 
-        //if (this.state.displayType == "signin-btns") {
-        //    btncomp =  (<div><FlatButton label="Sign in" onClick={this.onSignIn}></FlatButton>&nbsp;&nbsp;
-        //    <RaisedButton primary={true} label="Sign up" backgroundColor={pallette.accent} onClick={this.onSignUp}></RaisedButton></div>);
-        //} else if (this.state.displayType == "user-account") {
-        //    //console.log("show account circle");
-        //    btncomp = (<div onClick={this.showMenu}><i className="zmdi zmdi-account-circle" style={styles.icon} /></div>);
-        //}
-
-        //let contentHeader = (
-        //    <span>
-        //        { this.state.docked ?  null : <TitlePanelMenu/> }
-        //        <TitlePanelInput {...inputProps}/>
-        //    </span>);
-
-        //build header
         let display = this.state.display;
-        //let header = "";
-        //if (display.Hamburger) {
-        //    header += <TitlePanelMenu/>;
-        //}
-        //if (display.Title) {
-        //    header += <div style={styles.title}>{this.props.title}</div>
-        //}
-        //if (display.Input) {
-        //    header += <TitlePanelInput/>;
-        //}
-        //if (display.AuthBtns) {
-        //    header += (<div><FlatButton label="Sign in" onClick={this.onSignIn}></FlatButton>&nbsp;&nbsp;
-        //            <RaisedButton primary={true} label="Sign up" backgroundColor={pallette.accent} onClick={this.onSignUp}></RaisedButton></div>);
-        //}
-        //if (display.AcctMenu) {
-        //    header += (<div onClick={this.showMenu}><i className="zmdi zmdi-account-circle" style={styles.icon} /></div>);
-        //}
 
-        //<div style={styles.title}>{this.props.title}</div>
-        //<div style={styles.btns}>
-        //{btncomp}
-        //</div>
         let headerStyle = styles.headerMenu;
         if (display.IsContent) {
             headerStyle = display.Docked ? styles.headerContentDocked : styles.headerContentUndocked;
@@ -207,6 +171,7 @@ TitlePanel = React.createClass({
         let hamburgerProps = {
             menuButtonClick: this.menuButtonClick
         }
+        //{display.AcctMenu ? <div onClick={this.showMenu} syle={styles.authmenu}><i className="zmdi zmdi-account-circle" style={styles.icon} /></div> : null}
         return (
             <div name="titlepanel-root" style={rootStyle}>
                 <div name="titlepanel-header" style={headerStyle}>
@@ -216,7 +181,7 @@ TitlePanel = React.createClass({
                     <div style={styles.btns}>
                         {display.AuthBtns ? <div><FlatButton label="Sign in" onClick={this.onSignIn}></FlatButton>&nbsp;&nbsp;
                         <RaisedButton primary={true} label="Sign up" backgroundColor={pallette.accent} onClick={this.onSignUp}></RaisedButton></div> : null}
-                        {display.AcctMenu ? <div onClick={this.showMenu} syle={styles.authmenu}><i className="zmdi zmdi-account-circle" style={styles.icon} /></div> : null}
+                        {display.AcctMenu ? <TitleAuthMenu/> : null}
                     </div>
                 </div>
                 <div name="titlepanel-container" style={styles.container}>
