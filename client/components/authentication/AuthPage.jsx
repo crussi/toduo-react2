@@ -45,7 +45,7 @@ AuthPage = React.createClass({
         //let form =  <div>sign in</div>;
         //src="images/google-g-32X32.png"
         let cardtext = <div style={aligner}>
-            <div className="auth-avatar"><img src="images/google-g-32X32.png"></img></div>
+            <div className="auth-avatar"><img src="/images/google-g-32X32.png"></img></div>
             <div>Sign in with your</div>
             <div><img style={googleLogoStyle} src="/images/google-logo-64X21.png"></img></div>
             <div> account</div>

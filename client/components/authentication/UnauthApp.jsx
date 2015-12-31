@@ -83,17 +83,40 @@ UnauthApp = React.createClass({
         this.setBgColor();
     },
     render(){
-        let contentHeader = (
-            <div style={styles.title}>Toduo</div>
-        );
+        //let contentHeader = (
+        //    <div style={styles.title}>Toduo</div>
+        //);
         let tempStyle = {
             display: 'inline-block',
             marginBottom: '40px'
         }
         let pallette = this.state.pallette;
 
+        //Sorry, this is a real *hack* couldn't find reasonable way to do this :-(
+        let display = {};
+        if (this.props.content().type.displayName == "MktgPage") {
+            display = {
+                Docked: false,
+                Hamburger: false,
+                Title: true,
+                Input: false,
+                AuthBtns: true,
+                AcctMenu: false
+            }
+        } else {
+            display = {
+                Docked: false,
+                Hamburger: false,
+                Title: true,
+                Input: false,
+                AuthBtns: false,
+                AcctMenu: false
+            }
+        }
+
         let titleProps = {
-            title: contentHeader,
+            //title: contentHeader,
+            title: "Toduo",
             //"#4285f4"
             headerBgColor:'#FFFFFF',
             //containerBgColor: '#F44336'
@@ -103,8 +126,11 @@ UnauthApp = React.createClass({
             //containerBgColor: pallette.lightprimary,
             fontColor: pallette.primary,
             boxShadow: '0 0 4px rgba(0,0,0,.14),-4px 4px 8px rgba(0,0,0,.08)',
-            showSignIn: true
+            display: display
         };
+        //console.log('UnauthApp');
+        console.dir(this.props.content().type.displayName);
+
         let color = BgColors[this.state.index].primary;
         return (
             <TitlePanel {...titleProps}>

@@ -22,7 +22,8 @@ SearchBar = React.createClass({
             highlightedItem: -1,
             searchTerm: '',
             suggestions: [],
-            value: ''
+            value: '',
+            docked: this.props.Docked
         };
     },
     componentWillMount() {
@@ -32,6 +33,14 @@ SearchBar = React.createClass({
         if (this.props.autoFocus) {
             this._input.focus();
         }
+    },
+    componentWillReceiveProps: function(nextProps) {
+        //this resets state when docking changes
+        console.log("componentWillReceiveProps");
+        console.dir(nextProps);
+        this.setState({
+            docked: nextProps.Docked
+        });
     },
     onChange(e) {
         clearTimeout(this._timerId);
@@ -105,8 +114,9 @@ SearchBar = React.createClass({
     //    this.props.onSubmit(value);
     //},
     render() {
+        let wrapperClass = this.state.docked ? "search-bar-wrapper-docked" : "search-bar-wrapper-undocked";
         return (
-            <div className="search-bar-wrapper">
+            <div className={wrapperClass}>
                 <div className="search-bar-field">
                     <input
                         className="search-bar-input"

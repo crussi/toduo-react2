@@ -41,34 +41,44 @@ const update = React.addons.update;
 TitlePanel = React.createClass({
     getInitialState() {
         return {
-            //height: '100%'
+            display : this.props.display
         };
     },
+    componentWillReceiveProps: function(nextProps) {
+        //this resets state when docking changes
+        this.setState({
+            display: nextProps.display
+        });
+    },
     onSignIn(){
-        FlowRouter.go("/signin");
+        FlowRouter.go("/toduo/signin");
     },
     onSignUp(){
-        FlowRouter.go("/signup");
+        FlowRouter.go("/toduo/signup");
     },
     getThemePallette() {
         return sessionStore.get('pallette') ? sessionStore.get('pallette') : {primary: "#4285f4", accent: "#ff4081"};
     },
+    showMenu(){
+        console.log('show menu');
+    },
+    menuButtonClick(e) {
+        this.props.menuButtonClick(e);
+    },
     render() {
+        //console.log('render titlepanel');
+        //console.dir(this.props);
         let styles = {
             root: {
                 fontFamily: '"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif',
                 fontWeight: 300,
                 //this caused unexpected height issues
                 height: '100%',
-                width: '100%',
-
+                width: '100%'
             },
-            header: {
+            headerMenu: {
                 zIndex: '1',
-                //backgroundColor: '#03a9f4',
-                //backgroundColor: '#4285f4',
                 backgroundColor: this.props.headerBgColor,
-                //boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.25)',
                 boxShadow: this.props.boxShadow,
                 color: this.props.fontColor,
                 padding: '10px',
@@ -76,21 +86,51 @@ TitlePanel = React.createClass({
                 top: '0',
                 position: 'fixed',
                 width: '100%',
-                //display: 'inline-block'
+                display: 'inline-flex',
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                alignItems: 'center'
+
+            },
+            headerContentDocked: {
+                zIndex: '1',
+                backgroundColor: this.props.headerBgColor,
+                boxShadow: this.props.boxShadow,
+                color: this.props.fontColor,
+                padding: '6px',
+                fontSize: '1.5em',
+                top: '0',
+                position: 'fixed',
+                width: '-webkit-calc(100vw - 300px)',
+                width: '-moz-calc(100vw - 300px)',
+                width: 'calc(100vw - 300px)',
 
                 display: 'inline-flex',
                 flexDirection: 'row',
                 flexWrap: 'wrap',
-                //alignContent: 'flex-start',
-                alignItems: 'center',
+                alignItems: 'center'
 
-                //justifyContent: 'flex-start',
-                //fontSize: '18px',
-                //color: 'rgba(0, 0, 0, 0.87)'
+            },
+            headerContentUndocked: {
+                zIndex: '1',
+                backgroundColor: this.props.headerBgColor,
+                boxShadow: this.props.boxShadow,
+                color: this.props.fontColor,
+                padding: '6px',
+                fontSize: '1.5em',
+                top: '0',
+                position: 'fixed',
+                width: '100%',
+                display: 'inline-flex',
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                alignItems: 'center'
+
             },
             container: {
                 marginTop: '54px',
                 width: '100%',
+
                 padding: '8px',
                 height: '100%',
                 height: '100vh',
@@ -104,24 +144,79 @@ TitlePanel = React.createClass({
                 marginTop: '3px',
                 marginBottom: '4px'
             },
-            btn: {
+            btns: {
                 marginLeft: 'auto',
-                marginRight: '40px'
+                marginRight: '30px'
+            },
+            icon: {
+                fontSize: '44px',
+                color: 'rgba(250,250,250,0.75)'
             }
         };
         let rootStyle = this.props.style ? update(styles.root, {$merge: this.props.style}) : styles.root;
         //TODO: trying to convert to using 100vh
         //styles.content.height = this.props.viewportHeight;
+
+
         let pallette = this.getThemePallette();
+
+        let btncomp = (<div></div>);
+
+        //if (this.state.displayType == "signin-btns") {
+        //    btncomp =  (<div><FlatButton label="Sign in" onClick={this.onSignIn}></FlatButton>&nbsp;&nbsp;
+        //    <RaisedButton primary={true} label="Sign up" backgroundColor={pallette.accent} onClick={this.onSignUp}></RaisedButton></div>);
+        //} else if (this.state.displayType == "user-account") {
+        //    //console.log("show account circle");
+        //    btncomp = (<div onClick={this.showMenu}><i className="zmdi zmdi-account-circle" style={styles.icon} /></div>);
+        //}
+
+        //let contentHeader = (
+        //    <span>
+        //        { this.state.docked ?  null : <TitlePanelMenu/> }
+        //        <TitlePanelInput {...inputProps}/>
+        //    </span>);
+
+        //build header
+        let display = this.state.display;
+        //let header = "";
+        //if (display.Hamburger) {
+        //    header += <TitlePanelMenu/>;
+        //}
+        //if (display.Title) {
+        //    header += <div style={styles.title}>{this.props.title}</div>
+        //}
+        //if (display.Input) {
+        //    header += <TitlePanelInput/>;
+        //}
+        //if (display.AuthBtns) {
+        //    header += (<div><FlatButton label="Sign in" onClick={this.onSignIn}></FlatButton>&nbsp;&nbsp;
+        //            <RaisedButton primary={true} label="Sign up" backgroundColor={pallette.accent} onClick={this.onSignUp}></RaisedButton></div>);
+        //}
+        //if (display.AcctMenu) {
+        //    header += (<div onClick={this.showMenu}><i className="zmdi zmdi-account-circle" style={styles.icon} /></div>);
+        //}
+
+        //<div style={styles.title}>{this.props.title}</div>
+        //<div style={styles.btns}>
+        //{btncomp}
+        //</div>
+        let headerStyle = styles.headerMenu;
+        if (display.IsContent) {
+            headerStyle = display.Docked ? styles.headerContentDocked : styles.headerContentUndocked;
+        }
+        let hamburgerProps = {
+            menuButtonClick: this.menuButtonClick
+        }
         return (
             <div name="titlepanel-root" style={rootStyle}>
-                <div name="titlepanel-header" style={styles.header}>
-                    <div style={styles.title}>{this.props.title}</div>
-                    <div style={styles.btn}>
-                        <FlatButton label="Sign in"
-                                    onClick={this.onSignIn}></FlatButton>&nbsp;&nbsp;
-                        <RaisedButton primary={true} label="Sign up" backgroundColor={pallette.accent}
-                                      onClick={this.onSignUp}></RaisedButton>
+                <div name="titlepanel-header" style={headerStyle}>
+                    {display.Hamburger ? <Hamburger {...hamburgerProps}/> : null}
+                    {display.Title ? <div style={styles.title}>{this.props.title}</div> : null}
+                    {display.Input ? <TitlePanelInput Docked={display.Docked}/> : null}
+                    <div style={styles.btns}>
+                        {display.AuthBtns ? <div><FlatButton label="Sign in" onClick={this.onSignIn}></FlatButton>&nbsp;&nbsp;
+                        <RaisedButton primary={true} label="Sign up" backgroundColor={pallette.accent} onClick={this.onSignUp}></RaisedButton></div> : null}
+                        {display.AcctMenu ? <div onClick={this.showMenu} syle={styles.authmenu}><i className="zmdi zmdi-account-circle" style={styles.icon} /></div> : null}
                     </div>
                 </div>
                 <div name="titlepanel-container" style={styles.container}>

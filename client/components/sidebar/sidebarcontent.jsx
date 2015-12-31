@@ -52,16 +52,26 @@ SidebarContent = React.createClass({
         //let sliderMenuProps = {
         //    items: this.data.menudata
         //};
-        let contentHeader = (
-            <div style={styles.title}>Toduo</div>
-        );
+        //let contentHeader = (
+        //    <div style={styles.title}>Toduo</div>
+        //);
+
         let titleProps = {
-            title: contentHeader,
+            //title: contentHeader,
+            title: "Toduo",
             headerBgColor:'#4285f4',
             containerBgColor: 'transparent',
             fontColor: "#ffffff",
             boxShadow: '0 0 4px rgba(0,0,0,.14),-4px 4px 8px rgba(0,0,0,.28)',
-            showSignIn: false
+            display : {
+                Docked: false,
+                IsContent: false,
+                Hamburger: false,
+                Title: true,
+                Input: false,
+                AuthBtns: false,
+                AcctMenu: false
+            }
         };
         return (
             <TitlePanel {...titleProps} style={style}>

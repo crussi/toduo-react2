@@ -2,13 +2,16 @@
 
 function IsAuthenticated () {
     console.log("checking IsAuthenticated");
-    //var route;
-    //if (!(Meteor.loggingIn() || Meteor.userId())) {
-    //    route = FlowRouter.current();
-    //    if (route.route.name !== 'login') {
-    //        Session.set('redirectAfterLogin', route.path);
-    //    }
-    //    return FlowRouter.go("/toduo");
+    var route;
+    if (!(Meteor.loggingIn() || Meteor.userId())) {
+        console.log('user is not authenticated');
+        route = FlowRouter.current();
+        if (route.route.name !== 'signin') {
+            Session.set('redirectAfterLogin', route.path);
+        }
+        return FlowRouter.go("/toduo");
+    } //else {
+        //return FlowRouter.go("/toduo/app");
     //}
 }
 function renderf(Comp, props = {}, Layout = SidebarApp) {
@@ -27,12 +30,22 @@ function routeGroup(routePrefix, name) {
     return FlowRouter.group({prefix: routePrefix, name: name});
 }
 //Global trigger
-FlowRouter.triggers.enter([IsAuthenticated]);
+FlowRouter.triggers.enter([IsAuthenticated], {except: ["signin","signup"]});
 
-FlowRouter.route('/', {action: renderf(Container, { name: "world" }) } );
+FlowRouter.route('/', {
+    triggersEnter: [function(context, redirect) {
+        redirect('/toduo');
+    }],
+    action: function(_params) {
+        //throw new Error("this should not get called");
+        console.log("action called on flowrouter route ...");
+    }
+});
+
 FlowRouter.route('/toduo', {action: renderf(MktgPage,{},UnauthApp)} );
-FlowRouter.route('/signin', {action: renderf(AuthPage,{},UnauthApp)} );
-FlowRouter.route('/signup', {action: renderf(AuthPage,{},UnauthApp)} );
+FlowRouter.route('/toduo/signin', {name: "signin", action: renderf(AuthPage,{},UnauthApp)} );
+FlowRouter.route('/toduo/signup', {name: "signup", action: renderf(AuthPage,{},UnauthApp)} );
+FlowRouter.route('/toduo/app', {action: renderf(Container, { name: "world" }) } );
 
 FlowRouter.route('/inbox', {action: renderf(InboxList, { nextstep: nextstep }) } );
 

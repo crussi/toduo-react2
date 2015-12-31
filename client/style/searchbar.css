@@ -6,16 +6,24 @@ input {
     /*padding: 5px 30px 5px 5px;*/
 }
 
-.search-bar-wrapper {
-    width: 100%;
+.search-bar-wrapper-docked {
+    /*width: 100%;*/
+    width: -webkit-calc(100vw - 450px);
+    width: -moz-calc(100vw - 450px);
+    width: calc(100vw - 450px);
+}
+.search-bar-wrapper-undocked {
+    margin-left: 20px;
+    width: -webkit-calc(100vw - 150px);
+    width: -moz-calc(100vw - 150px);
+    width: calc(100vw - 150px);
 }
 
-
 @media screen and (min-width: 640px) {
-    .search-bar-wrapper {
-        min-width: 480px;
-        width: 50%;
-    }
+    /*.search-bar-wrapper {*/
+        /*min-width: 480px;*/
+        /*width: 50%;*/
+    /*}*/
 }
 
 .search-bar-field {

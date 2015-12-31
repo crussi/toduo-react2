@@ -6,13 +6,13 @@ const {
 //const Colors = mui.Styles.Colors;
 //const ThemeManager = new mui.Styles.ThemeManager();
 
-const styles = {
-    contentHeaderMenuLink: {
-        textDecoration: 'none',
-        color: 'white',
-        padding: 8,
-    },
-};
+//const styles = {
+//    contentHeaderMenuLink: {
+//        textDecoration: 'none',
+//        color: 'white',
+//        padding: 8,
+//    },
+//};
 
 SidebarApp = React.createClass({
     mixins: [ReactMeteorData],
@@ -80,8 +80,8 @@ SidebarApp = React.createClass({
         this.setState({docked: this.state.mql.matches});
     },
 
-    menuButtonClick(ev) {
-        ev.preventDefault();
+    menuButtonClick(e) {
+        e.preventDefault();
         this.onSetOpen(!this.state.open);
     },
 
@@ -111,43 +111,52 @@ SidebarApp = React.createClass({
                 {prop} <input type='number' onChange={setMethod} value={this.state[prop]} />
             </p>);
     },
-    onChange(input, resolve) {
-        // Simulate AJAX request
-        //setTimeout(() => {
-        //    resolve(suggestions.filter((suggestion) =>
-        //            suggestion.match(new RegExp('^' + input.replace(/\W\s/g, ''), 'i'))
-        //    ));
-        //}, 25);
-    },
-    onSubmit(input) {
-        if (!input) return;
-        console.info("Parent onSubmit input: " + input);
-        Meteor.call("/inbox/addNew", input, (err, res) => {
-            console.log('meteor.call inbox addNew');
-            if (err) {
-                console.log("Failed to add new input task.");
-                return;
-            }
-
-            //input.value = "";
-        });
-    },
+    //onChange(input, resolve) {
+    //    // Simulate AJAX request
+    //    //setTimeout(() => {
+    //    //    resolve(suggestions.filter((suggestion) =>
+    //    //            suggestion.match(new RegExp('^' + input.replace(/\W\s/g, ''), 'i'))
+    //    //    ));
+    //    //}, 25);
+    //},
+    //onSubmit(input) {
+    //    if (!input) return;
+    //    console.info("Parent onSubmit input: " + input);
+    //    Meteor.call("/inbox/addNew", input, (err, res) => {
+    //        console.log('meteor.call inbox addNew');
+    //        if (err) {
+    //            console.log("Failed to add new input task.");
+    //            return;
+    //        }
+    //
+    //        //input.value = "";
+    //    });
+    //},
     render() {
 
         //console.log('sidebarapp render');
-        let sidebar = <SidebarContent />;
+        //{!this.state.docked &&
+        //<a onClick={this.menuButtonClick} href='#' style={styles.contentHeaderMenuLink}><i className="zmdi zmdi-menu"></i></a>}
+        //<span><form>
+        //    <SearchBar
+        //        placeholder="Inbox input ..."
+        //        onChange={this.onChange}
+        //        onSubmit={this.onSubmit} />
+        //</form></span>
 
-        let contentHeader = (
-            <span>
-        {!this.state.docked &&
-        <a onClick={this.menuButtonClick} href='#' style={styles.contentHeaderMenuLink}><i className="zmdi zmdi-menu"></i></a>}
-                <span><form>
-                    <SearchBar
-                        placeholder="Inbox input ..."
-                        onChange={this.onChange}
-                        onSubmit={this.onSubmit} />
-                </form></span>
-      </span>);
+        let sidebar = <SidebarContent />;
+        //let menuProps = {
+        //    menuButtonClick: this.menuButtonClick
+        //};
+        //let inputProps = {
+        //    onChange: this.onChange,
+        //    onSubmit: this.onSubmit
+        //};
+        //let contentHeader = (
+        //    <span>
+        //        { this.state.docked ?  null : <TitlePanelMenu/> }
+        //        <TitlePanelInput {...inputProps}/>
+        //    </span>);
 
         let sidebarProps = {
             sidebar: sidebar,
@@ -161,15 +170,26 @@ SidebarApp = React.createClass({
         };
 
         let titleProps = {
-            title: contentHeader,
+            //title: contentHeader,
+            //title: "",
             //viewportHeight: this.state.viewportHeight
             headerBgColor:'#4285f4',
             containerBgColor: 'transparent',
             fontColor: "#ffffff",
             boxShadow: '0 0 4px rgba(0,0,0,.14),-4px 4px 8px rgba(0,0,0,.28)',
-            showSignIn: false
+            display : {
+                Docked: this.state.docked,
+                IsContent: true,
+                Hamburger: !this.state.docked,
+                Title: false,
+                Input: true,
+                AuthBtns: false,
+                AcctMenu: true
+            },
+            menuButtonClick: this.menuButtonClick
         };
-
+console.log('hello from sidebarapp ...');
+console.dir(titleProps);
         return (
             <Sidebar {...sidebarProps}>
                 <TitlePanel {...titleProps} >

@@ -55,7 +55,7 @@ Signin = React.createClass({
             } else {
                 console.log('google login success');
                 //FlowLayout.render('layout-auth', { content: "app" });
-                FlowRouter.go('/');
+                FlowRouter.go('/toduo/app');
             }
         });
     },

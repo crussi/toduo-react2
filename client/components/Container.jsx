@@ -3,7 +3,7 @@
 Container = React.createClass({
     render(){
         return <div>
-            <p>{this.props.namd}</p>
+            <p>{this.props.name}</p>
         </div>
     }
 });
