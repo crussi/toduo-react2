@@ -195,6 +195,7 @@ SidebarApp = React.createClass({
                 <TitlePanel {...titleProps} >
                     {this.props.content()}
                 </TitlePanel>
+
             </Sidebar>
         );
     }

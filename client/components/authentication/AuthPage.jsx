@@ -1,31 +1,16 @@
-const {
-    Avatar
-    } = MUI;
-
 
 AuthPage = React.createClass({
 
     getInitialState() {
         return {
-
+            type: this.props.type
         };
-    },
-    onTextChange(itemId, newText) {
-        //console.log('onTextChange itemId: ' + itemId + ' newText: ' + newText);
-        //this.props.onTextChange(itemId, newText);
     },
     getRandomBgColor() {
         return sessionStore.get('pallette') ? sessionStore.get('pallette') : {primary: "#4285f4", accent: "#ff4081"};
     },
-    render(){
-        //let avatarStyle = {
-        //    display:'inline-block',
-        //    marginRight: '10px',
-        //    height: '40px',
-        //    verticalAlign: 'middle',
-        //
-        //}
-        let aligner = {
+    styles:{
+        aligner : {
             display: 'inline-flex',
             flexDirection: 'row',
             flexWrap: 'wrap',
@@ -34,30 +19,28 @@ AuthPage = React.createClass({
             justifyContent: 'flex-start',
             fontSize: '18px',
             color: 'rgba(0, 0, 0, 0.87)'
-        };
-
-
-        let googleLogoStyle = {
+        },
+        googleLogoStyle : {
             marginLeft: '5px',
             marginRight: '5px',
             marginTop: '6px'
         }
-        //let form =  <div>sign in</div>;
-        //src="images/google-g-32X32.png"
-        let cardtext = <div style={aligner}>
+
+    },
+    render(){
+        let instructions = this.props.type == 'signin' ? "Sign in with your" : "Sign up with your"
+        let cardtext = <div style={this.styles.aligner}>
             <div className="auth-avatar"><img src="/images/google-g-32X32.png"></img></div>
-            <div>Sign in with your</div>
-            <div><img style={googleLogoStyle} src="/images/google-logo-64X21.png"></img></div>
+            <div>{instructions}</div>
+            <div><img style={this.styles.googleLogoStyle} src="/images/google-logo-64X21.png"></img></div>
             <div> account</div>
         </div>;
         let pallette = this.getRandomBgColor();
-        //console.log(this.getRandomBgColor());
         let cardProps = {
-            content: <Signin/>,
+            content: this.props.type == 'signin' ? <Signin/> : <Signup/>,
             icon: "account-circle",
-            //backgroundColor: "#4285f4",
             backgroundColor: pallette.primary,
-            mediaTitle: "Sign in",
+            mediaTitle: this.props.type == 'signin' ? "Sign in" : "Sign up",
             mediaSubtitle: "",
             cardTitle: "",
             cardText: cardtext,
@@ -65,7 +48,6 @@ AuthPage = React.createClass({
             imgHeight: "250px",
             iconClass: "auth-icon"
         };
-
 
         return <div id="unauth" className="row center-xs middle-xs full-height">
             <div name="list-card" className="list-card col-xs-4">

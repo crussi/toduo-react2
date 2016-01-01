@@ -4,12 +4,12 @@ Hamburger = React.createClass({
         color: 'white',
         padding: 8,
     },
-    menuButtonClick(e){
-        this.props.menuButtonClick(e);
+    hamburgerClick(e){
+        this.props.hamburgerClick(e);
     },
     render(){
         return (
-            <a onClick={this.menuButtonClick} href='#' style={this.menuStyle}><i className="zmdi zmdi-menu"></i></a>
+            <a onClick={this.hamburgerClick} href='#' style={this.menuStyle}><i className="zmdi zmdi-menu"></i></a>
         )
     }
 });

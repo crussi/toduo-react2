@@ -43,8 +43,8 @@ FlowRouter.route('/', {
 });
 
 FlowRouter.route('/toduo', {action: renderf(MktgPage,{},UnauthApp)} );
-FlowRouter.route('/toduo/signin', {name: "signin", action: renderf(AuthPage,{},UnauthApp)} );
-FlowRouter.route('/toduo/signup', {name: "signup", action: renderf(AuthPage,{},UnauthApp)} );
+FlowRouter.route('/toduo/signin', {name: "signin", action: renderf(AuthPage,{type:'signin'},UnauthApp)} );
+FlowRouter.route('/toduo/signup', {name: "signup", action: renderf(AuthPage,{type:'signup'},UnauthApp)} );
 FlowRouter.route('/toduo/app', {action: renderf(Container, { name: "world" }) } );
 
 FlowRouter.route('/inbox', {action: renderf(InboxList, { nextstep: nextstep }) } );

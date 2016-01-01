@@ -6,8 +6,7 @@ const {
     Styles
     } = MUI;
 
-Signin = React.createClass({
-
+Signup = React.createClass({
     childContextTypes: {
         muiTheme: React.PropTypes.object
     },
@@ -28,9 +27,7 @@ Signin = React.createClass({
         }
     },
     onSignUp(){
-        FlowRouter.go("/toduo/signup")
-    },
-    onSignIn(){
+        //TODO: need to generate account #
         return Meteor.loginWithGoogle({
             requestPermissions: ['email']
         }, function(error) {
@@ -44,7 +41,11 @@ Signin = React.createClass({
             }
         });
     },
+    onSignIn(){
+        FlowRouter.go("/toduo/signin")
+    },
     render: function () {
+
         let fudge = {
             height: '60px'
         }
@@ -58,13 +59,13 @@ Signin = React.createClass({
                             <div className="row bottom-xs" style={fudge}>
                                 <div className="col-xs-offset-5 col-sm-offset-6 col-xs-3">
                                     <div className="box-first box-container">
-                                        <FlatButton label="Sign up" onClick={this.onSignUp}></FlatButton>
+                                        <FlatButton label="Sign in" onClick={this.onSignIn}></FlatButton>
                                     </div>
                                 </div>
                                 <div className="col-xs-3">
                                     <div className="box-first box-container">
-                                        <RaisedButton primary={true} label="Sign in" backgroundColor={pallette.accent}
-                                                      onClick={this.onSignIn}></RaisedButton>
+                                        <RaisedButton primary={true} label="Sign up" backgroundColor={pallette.accent}
+                                                      onClick={this.onSignUp}></RaisedButton>
                                     </div>
                                 </div>
                             </div>

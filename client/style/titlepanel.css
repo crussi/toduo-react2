@@ -1,0 +1,21 @@
+.auth-popover {
+    top: 58px !important;
+    /*z-index: 1 !important;*/
+}
+
+
+.menu-auth-arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+
+    border-bottom: 8px solid white;
+    position: absolute;
+    right: 40px;
+    bottom: -3px;
+    z-index: 2200;
+    visibility:hidden;
+    opacity:0;
+    transition:opacity 0.25s linear;
+}

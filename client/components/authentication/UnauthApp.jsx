@@ -1,14 +1,4 @@
-const {
-    RaisedButton,
-    FlatButton
-    } = MUI;
 
-const styles = {
-    title: {
-        //marginTop: '3px',
-        //marginBottom: '4px'
-    }
-};
 const Colors = MUI.Styles.Colors;
 const BgColors = [
     {primary:'red500', lightprimary:'red300',accent:'blueA200'},
@@ -33,20 +23,20 @@ UnauthApp = React.createClass({
             pallette: {primary: "#4285f4", lightprimary: "#ffffff", accent: "#ff4081"}
         };
     },
-    trianglify() {
-    //let img = this.refs.something.getDOMNode();
-    let img = this.refs.something;
-    let pattern = Trianglify({
-        width: img.offsetWidth,
-        height: img.offsetHeight,
-        cell_size: 125,
-        variance: "1",
-        x_colors: ['#004D40','#00695C','#00796B','#00897B','#009688','#26A69A','#4DB6AC','#80CBC4','#00BFA5','#1DE9B6','#64FFDA'],
-        y_colors: ['#64FFDA','#1DE9B6','#00BFA5','#80CBC4','#4DB6AC','#26A69A','#009688','#00897B','#00796B','#00695C','#004D40']
-
-    });
-    img.src = pattern.png();
-    },
+    //trianglify() {
+    ////let img = this.refs.something.getDOMNode();
+    //let img = this.refs.something;
+    //let pattern = Trianglify({
+    //    width: img.offsetWidth,
+    //    height: img.offsetHeight,
+    //    cell_size: 125,
+    //    variance: "1",
+    //    x_colors: ['#004D40','#00695C','#00796B','#00897B','#009688','#26A69A','#4DB6AC','#80CBC4','#00BFA5','#1DE9B6','#64FFDA'],
+    //    y_colors: ['#64FFDA','#1DE9B6','#00BFA5','#80CBC4','#4DB6AC','#26A69A','#009688','#00897B','#00796B','#00695C','#004D40']
+    //
+    //});
+    //img.src = pattern.png();
+    //},
     setBgColor(){
         let newIndex = Math.round(Math.random()*(BgColors.length-1));
         this.setState({index: newIndex});
@@ -63,15 +53,12 @@ UnauthApp = React.createClass({
     incrBgColorIndex() {
         //this method used for testing ...
         //let index = Math.round(Math.random()*(BgColors.length-1));
-        console.log('old index: ' + this.state.index);
         let newIndex = ++this.state.index;
         newIndex = newIndex >= BgColors.length ? 0 : newIndex;
         this.setState({index: newIndex});
-
         let primary  = BgColors[newIndex].primary;
         let lightprimary = BgColors[newIndex].lightprimary;
         let accent = BgColors[newIndex].accent;
-        console.log('primary: ' + primary + ' lightprimary: ' + lightprimary + ' accent: ' + accent);
         let pallette = { primary: Colors[primary], lightprimary: Colors[lightprimary], accent: Colors[accent]};
         this.setState({pallette:pallette});
     },
@@ -83,13 +70,11 @@ UnauthApp = React.createClass({
         this.setBgColor();
     },
     render(){
-        //let contentHeader = (
-        //    <div style={styles.title}>Toduo</div>
-        //);
-        let tempStyle = {
-            display: 'inline-block',
-            marginBottom: '40px'
-        }
+        //For testing different themes
+        //let tempStyle = {
+        //    display: 'inline-block',
+        //    marginBottom: '40px'
+        //}
         let pallette = this.state.pallette;
 
         //Sorry, this is a real *hack* couldn't find reasonable way to do this :-(
@@ -115,23 +100,14 @@ UnauthApp = React.createClass({
         }
 
         let titleProps = {
-            //title: contentHeader,
             title: "Toduo",
-            //"#4285f4"
             headerBgColor:'#FFFFFF',
-            //containerBgColor: '#F44336'
-            //containerBgColor: '#FFFFFF',
-            //containerBgColor: '#000',
             containerBgColor: 'rgb(242, 242, 242)',
-            //containerBgColor: pallette.lightprimary,
             fontColor: pallette.primary,
             boxShadow: '0 0 4px rgba(0,0,0,.14),-4px 4px 8px rgba(0,0,0,.08)',
             display: display
         };
-        //console.log('UnauthApp');
-        console.dir(this.props.content().type.displayName);
 
-        let color = BgColors[this.state.index].primary;
         return (
             <TitlePanel {...titleProps}>
                 {this.props.content()}

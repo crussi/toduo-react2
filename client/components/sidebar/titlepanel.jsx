@@ -62,8 +62,22 @@ TitlePanel = React.createClass({
     showMenu(){
         console.log('show menu');
     },
-    menuButtonClick(e) {
-        this.props.menuButtonClick(e);
+    hamburgerClick(e) {
+        this.props.hamburgerClick(e);
+    },
+    authMenuClick(val){
+        switch (val) {
+            case "signout":
+                Meteor.logout(function(err) {
+                    if (!err) {
+                        //hideSideMenu();
+                        FlowRouter.go('/toduo/signin');
+                    } else {
+                        console.log('problem logging out!!!');
+                    }
+                });
+                break;
+        }
     },
     render() {
         //console.log('render titlepanel');
@@ -169,8 +183,11 @@ TitlePanel = React.createClass({
             headerStyle = display.Docked ? styles.headerContentDocked : styles.headerContentUndocked;
         }
         let hamburgerProps = {
-            menuButtonClick: this.menuButtonClick
-        }
+            hamburgerClick: this.hamburgerClick
+        };
+        let authMenuProps = {
+            authMenuClick: this.authMenuClick
+        };
         //{display.AcctMenu ? <div onClick={this.showMenu} syle={styles.authmenu}><i className="zmdi zmdi-account-circle" style={styles.icon} /></div> : null}
         return (
             <div name="titlepanel-root" style={rootStyle}>
@@ -181,7 +198,7 @@ TitlePanel = React.createClass({
                     <div style={styles.btns}>
                         {display.AuthBtns ? <div><FlatButton label="Sign in" onClick={this.onSignIn}></FlatButton>&nbsp;&nbsp;
                         <RaisedButton primary={true} label="Sign up" backgroundColor={pallette.accent} onClick={this.onSignUp}></RaisedButton></div> : null}
-                        {display.AcctMenu ? <TitleAuthMenu/> : null}
+                        {display.AcctMenu ? <TitleAuthMenu {...authMenuProps}/> : null}
                     </div>
                 </div>
                 <div name="titlepanel-container" style={styles.container}>

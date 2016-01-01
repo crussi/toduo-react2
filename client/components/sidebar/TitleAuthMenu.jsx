@@ -18,6 +18,16 @@ TitleAuthMenu = React.createClass({
             selectedIndex: 0
         }
     },
+    //componentWillUpdate: function(nextProps, nextState){
+    //    // perform any preparations for an upcoming update
+    //    if (nextState.activePopover == 'pop') {
+    //        console.log('state has activePopover = pop');
+    //        console.log(ReactDOM.findDOMNode(this.refs.menuAuthArrow));
+    //    } else {
+    //        console.log('state has activePopover = pop');
+    //
+    //    }
+    //},
     onChange(e){
         console.log("on change");
     },
@@ -41,6 +51,8 @@ TitleAuthMenu = React.createClass({
             activePopover:key,
             anchorEl:e.currentTarget,
         });
+        //this.refs.menuAuthArrow.visibility = 'visible';
+
     },
 
     closePopover(key) {
@@ -72,10 +84,11 @@ TitleAuthMenu = React.createClass({
         console.log('handleUpdateSelectedIndex');
         condole.dir(e);
     },
-    handleClick(val){
-        console.log('on click ' + val);
+    authMenuClick(val){
+        //console.log('on click ' + val);
         //console.dir(e);
         this.closePopover('pop');
+        this.props.authMenuClick(val);
     },
     render(){
         //<IconButton touch={true} iconStyle={iconStyle}>
@@ -98,22 +111,31 @@ TitleAuthMenu = React.createClass({
         //<SelectableList valueLink={{value: this.state.selectedIndex, requestChange: this.handleUpdateSelectedIndex}}>
         //    <ListItem value={1} primaryText="Sign out" />
         //</SelectableList>
+        let arrowStyle = this.state.activePopover === 'pop' ? {visibility:'visible',opacity:1} : {visibility:'hidden',opacity:0};
 
         return (<div>
         <div onClick={this.show.bind(this, "pop")} style={iconStyle}>
             <i className="zmdi zmdi-account-circle" />
+
         </div>
 
+
+                <div ref="menuAuthArrow" className="menu-auth-arrow-up" style={arrowStyle}></div>
                 <Popover open={this.state.activePopover === 'pop'}
+                         animated={true}
+                         className="auth-popover"
                          anchorEl={this.state.anchorEl}
                          anchorOrigin={this.state.anchorOrigin}
                          targetOrigin={this.state.targetOrigin}
                          onRequestClose={this.closePopover.bind(this, 'pop')} >
+
+
                     <div style={{padding:5}}>
                         <List>
-                            <ListItem value={1} onClick={this.handleClick.bind(this,'signout')} primaryText="Sign out" />
+                            <ListItem value={1} onClick={this.authMenuClick.bind(this,'signout')} primaryText="Sign out" />
                         </List>
                     </div>
+
                 </Popover>
 
             </div>
