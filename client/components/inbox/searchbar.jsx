@@ -36,8 +36,8 @@ SearchBar = React.createClass({
     },
     componentWillReceiveProps: function(nextProps) {
         //this resets state when docking changes
-        console.log("componentWillReceiveProps");
-        console.dir(nextProps);
+        //console.log("componentWillReceiveProps");
+        //console.dir(nextProps);
         this.setState({
             docked: nextProps.Docked
         });

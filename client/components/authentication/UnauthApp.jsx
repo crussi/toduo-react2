@@ -45,7 +45,7 @@ UnauthApp = React.createClass({
         let accent = BgColors[newIndex].accent;
         //console.log('primary: ' + primary + ' lightprimary: ' + lightprimary + ' accent: ' + accent);
         let pallette = { primary: Colors[primary], lightprimary: Colors[lightprimary], accent: Colors[accent]};
-        console.log('setBgColor primary: ' + pallette.primary);
+        //console.log('setBgColor primary: ' + pallette.primary);
         sessionStore.set("pallette",pallette);
         this.setState({pallette:pallette});
 

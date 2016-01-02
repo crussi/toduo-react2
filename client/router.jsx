@@ -1,10 +1,10 @@
 
 
 function IsAuthenticated () {
-    console.log("checking IsAuthenticated");
+    //console.log("checking IsAuthenticated");
     var route;
     if (!(Meteor.loggingIn() || Meteor.userId())) {
-        console.log('user is not authenticated');
+        //console.log('user is not authenticated');
         route = FlowRouter.current();
         if (route.route.name !== 'signin') {
             Session.set('redirectAfterLogin', route.path);

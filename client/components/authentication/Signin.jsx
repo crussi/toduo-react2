@@ -32,7 +32,8 @@ Signin = React.createClass({
     },
     onSignIn(){
         return Meteor.loginWithGoogle({
-            requestPermissions: ['email']
+            requestPermissions: ['email'],
+            requestOfflineToken: true
         }, function(error) {
             if (error) {
                 console.log('google login error');
@@ -40,6 +41,7 @@ Signin = React.createClass({
             } else {
                 console.log('google login success');
                 //FlowLayout.render('layout-auth', { content: "app" });
+                console.dir(Meteor.user());
                 FlowRouter.go('/toduo/app');
             }
         });
