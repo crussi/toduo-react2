@@ -19,8 +19,12 @@ InboxList = React.createClass({
         selectedItemId: React.PropTypes.string
     },
     mixins: [ReactMeteorData],
+    getInitialState(){
+        return {
+            activeCardKey: ""
+        }
+    },
     getMeteorData() {
-
         const subHandles = [
             Meteor.subscribe("inbox")
         ];
@@ -65,6 +69,9 @@ InboxList = React.createClass({
             }
         });
     },
+    onIsActiveChanged(cardKey,isActive){
+        this.setState({ activeCardKey: isActive ? cardKey : "" });
+    },
     render() {
         let listStyle = this.props.style ?
             update(styles.list, {$merge: this.props.style}) :
@@ -89,12 +96,14 @@ InboxList = React.createClass({
                         let secondaryText = moment(item.dateCreated).fromNow();
                         let cardProps = {
                             cardKey: item._id,
+                            active: item._id == this.state.activeCardKey,
                             primaryText: item.description,
                             avatar: <Avatar style={avatarStyle}>{days}</Avatar>,
                             secondaryText: "Entered " + secondaryText,
                             nextstep: this.props.nextstep,
                             handleRouting: this.handleRouting,
-                            handleRemove: this.handleRemove
+                            handleRemove: this.handleRemove,
+                            onIsActiveChanged: this.onIsActiveChanged
                         }
                         return [
                             <CollapseCard key={ item._id } {...cardProps}/>

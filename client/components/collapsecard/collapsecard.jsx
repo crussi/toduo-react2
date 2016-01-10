@@ -5,9 +5,12 @@ const {
 CollapseCard = React.createClass({
     getInitialState(){
         return {
-            active: false,
+            active: this.props.isActive,
             slideDirection: "up"
         }
+    },
+    componentWillReceiveProps: function(nextProps) {
+        this.setState({ active: nextProps.active });
     },
     childContextTypes: {
         muiTheme: React.PropTypes.object
@@ -19,7 +22,8 @@ CollapseCard = React.createClass({
     },
     headingClicked(){
         //console.log('card headingClicked');
-        this.setState({ active: !this.state.active });
+        this.props.onIsActiveChanged(this.props.cardKey, !this.state.active);
+        //this.setState({ active: !this.state.active });
     },
     handleRouting(){
         this.props.handleRouting(this.props.cardKey);
